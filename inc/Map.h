@@ -10,63 +10,71 @@
 #include "common.h"
 #include "Position.h"
 
-/*!
+/**
+ *
  * Represent the detail of grid map in this MAPF problem.\n\n
  * It has the attributes height, width and states(passable or unpassable) of all the grid cells.
- * */
+ */
 class Map {
 protected:
     int map_height, map_width;
     std::vector< std::vector<GRID_STATE> > map_value;
-    /*!
+    /**
+     *
      * Initialize the map with a all passable grid cells whose size is height * width.
-     * */
+     */
     void initial_map();
 
 public:
-    /*!
+    /**
+     *
      * @param map_height_: height of this map.
      * @param map_width_: width of this map.
      *
      * Initialize the map with the size map_height_ * map_width_ with all passable grid cells.\n\n
      * Default size is 0 * 0.
-     * */
+     */
     Map(int map_height_=0, int map_width_=0);
 
-    /*!
+    /**
+     *
      * @return: a integer, which represents height of this map.
-     * */
+     */
     int get_height() const;
 
-    /*!
+    /**
+     *
      * @return: a integer, which represents width of this map.
-     * */
+     */
     int get_width() const;
 
-    /*!
+    /**
+     *
      * @param map_height_: new height of this map.
      * @param map_width_: new width of this map.
      *
      * Resize the map with a new size map_height_ * map_width_ with all passable grid cells.
-     * */
+     */
     void set_size(int map_height_, int map_width_);
 
-    /*!
+    /**
+     *
      * @param row: which row is selecting.
      * @return: the reference of the selecting row.
      *
      * Return the reference of the selecting row, if its under the bound of map's size.\n\n
      * It will throw a exception if the selecting row is out of the bound.
-     * */
+     */
     std::vector<GRID_STATE>& operator [] (int row);
 
-    /*!
+    /**
+     *
      * @param row: which row is selecting.
      * @return: the read-only reference of the selecting row.
      *
      * Return the read-only reference of the selecting row, if its under the bound of map's size.\n\n
      * It will throw a exception if the selecting row is out of the bound.
-     * */
+     */
     const std::vector<GRID_STATE>& operator [] (int row) const;
 };
 
