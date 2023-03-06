@@ -19,14 +19,19 @@ class Map {
 protected:
     /**
      *
-     * map_height height of this map.\n\n
-     * map_width width of this map.
+     * Height of this map.
      */
-    int map_height, map_width;
+    int map_height;
 
     /**
      *
-     * map_value[i][j] the state(passable of not) of this grid cell (i,j), which is started from (0,0).
+     * Width of this map.
+     */
+    int map_width;
+
+    /**
+     *
+     * map_value[i][j] means the state(passable of not) of this grid cell (i,j), which is started from (0,0).
      */
     std::vector< std::vector<GRID_STATE> > map_value;
 
