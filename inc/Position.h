@@ -157,6 +157,7 @@ public:
 };
 
 /**
+ *
  * A vector with the same dimension like position.\n\n
  * Describes the physics position.
  */
