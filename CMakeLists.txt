@@ -5,9 +5,12 @@ set(CMAKE_CXX_STANDARD 17)
 
 include_directories("inc")
 include_directories("src")
+include_directories("unit_test")
 
-add_executable(MAPF_Cpp main.cpp
-        src/AStar.cpp src/AStarNode.cpp src/CloseList.cpp src/common.cpp src/HeuristicMap.cpp src/Map.cpp src/MapReader.cpp src/MultiAgentState.cpp src/Node.cpp src/OpenList.cpp src/Position.cpp src/SingleAgentState.cpp src/Solver.cpp src/State.cpp inc/AStar.h inc/AStarNode.h inc/CloseList.h inc/common.h inc/HeuristicMap.h inc/Map.h inc/MapReader.h inc/MultiAgentState.h inc/Node.h inc/OpenList.h inc/Position.h inc/SingleAgentState.h inc/Solver.h inc/State.h)
+set(common_file inc/common.h src/common.cpp)
+set(common_test ${common_file} unit_test/commonTester.h)
+add_executable(common main.cpp ${common_test})
 
-add_executable(main
-        src/AStar.cpp src/AStarNode.cpp src/CloseList.cpp src/common.cpp src/HeuristicMap.cpp src/Map.cpp src/MapReader.cpp src/MultiAgentState.cpp src/Node.cpp src/OpenList.cpp src/Position.cpp src/SingleAgentState.cpp src/Solver.cpp src/State.cpp inc/AStar.h inc/AStarNode.h inc/CloseList.h inc/common.h inc/HeuristicMap.h inc/Map.h inc/MapReader.h inc/MultiAgentState.h inc/Node.h inc/OpenList.h inc/Position.h inc/SingleAgentState.h inc/Solver.h inc/State.h)
+set(Node_file inc/Node.h src/Node.cpp ${common_file})
+set(Node_test ${Node_file} unit_test/NodeTester.h)
+add_executable(Node main.cpp ${Node_test})

@@ -31,6 +31,12 @@ protected:
      */
     HEURISTIC_TYPE static_f;
 
+    /**
+     *
+     * calculate f value (the estimating cost of all path which passes this node) as f = g + h.
+     */
+    void calculate_static_f();
+
 public:
     /**
      *
@@ -42,12 +48,6 @@ public:
      * (the estimating cost of all path which passes this node) automatically.
      */
     Node(const HEURISTIC_TYPE &g_= 0, const HEURISTIC_TYPE &h_= 0);
-
-    /**
-     *
-     * calculate f value (the estimating cost of all path which passes this node) as f = g + h.
-     */
-    void calculate_static_f();
 
     /**
      *
