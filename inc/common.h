@@ -52,8 +52,8 @@ const HEURISTIC_TYPE eps = 1e-9;
 
 /**
  *
- * @param v: a value which is needed to recognize its sign.
- * @return: the sign of this value.
+ * @param v a value which is needed to recognize its sign.
+ * @return the sign of this value.
  *
  * sgn(v) is 1 while v is grater than precision bound(epsilon, as known as eps);\n\n
  * sgn(v) is -1 while v is less than precision bound(eps);\n\n
