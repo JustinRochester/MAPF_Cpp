@@ -96,7 +96,7 @@ public:
      *
      * @param time_ new time used to update the current time of this multi-agent-state.
      */
-    void set_time(TIME_TYPE time_);
+    void set_time(const TIME_TYPE &time_);
 
     /**
      *

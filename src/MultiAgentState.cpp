@@ -56,7 +56,7 @@ const TIME_TYPE & MultiAgentState::get_time() const {
     return time;
 }
 
-void MultiAgentState::set_time(TIME_TYPE time_) {
+void MultiAgentState::set_time(const TIME_TYPE &time_) {
     time = time_;
 }
 
