@@ -26,7 +26,7 @@ public:
      * Otherwise, it will follow the FIFO policy and give a higher priority for the early node
      * by checking their timestamps.
      */
-    bool operator () (const std::pair<Node, int> &a, const std::pair<Node, int> &b);
+    bool operator () (const std::pair<Node*, int> &a, const std::pair<Node*, int> &b);
 };
 
 /**
@@ -35,8 +35,8 @@ public:
  * It will compare two node by node priority and time one by one.
  */
 class OpenList : public std::priority_queue<
-            std::pair<Node, int>,
-            std::vector< std::pair<Node, int> >,
+            std::pair<Node*, int>,
+            std::vector< std::pair<Node*, int> >,
             OpenListComparer
         > {
 protected:
@@ -59,13 +59,13 @@ public:
      *
      * It will push this node into the open list with a timestamp.
      */
-    void push_node(const Node &node);
+    void push_node(Node *node);
 
     /**
      *
-     * @return the read-only reference of the node with the highest priority.
+     * @return the read-only pointer to the node with the highest priority.
      */
-    const Node& top_node() const;
+    const Node* top_node() const;
 };
 
 
