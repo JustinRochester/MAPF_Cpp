@@ -55,7 +55,7 @@ public:
 
     /**
      *
-     * @param s another state which is need to detecting equalization.
+     * @param s another state which is need to detecting equality.
      * @return true means equal, and false means not equal.
      *
      * It will be detecting by hash value firstly, and then by checking all the other attributes.
