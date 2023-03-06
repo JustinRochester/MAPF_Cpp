@@ -40,7 +40,7 @@ public:
      * Initialize this single-agent-state by given position and time.
      * Sets position as initial position and sets time as -1 in default.
      */
-    SingleAgentState(Position position_=Position(), TIME_TYPE time_=-1);
+    SingleAgentState(const Position &position_= Position(), const TIME_TYPE &time_= -1);
 
     /**
      *

@@ -14,7 +14,7 @@ size_t MultiAgentState::MultiAgentStateHasher::operator()(const State &s) const 
     return (h1>>13) ^ (h1<<19) ^ h2;
 }
 
-MultiAgentState::MultiAgentState(int time_):time(time_) {
+MultiAgentState::MultiAgentState(const TIME_TYPE &time_): time(time_) {
 }
 
 bool MultiAgentState::equalTo(const State &s) const {

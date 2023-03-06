@@ -4,7 +4,7 @@
 
 #include "SingleAgentState.h"
 
-SingleAgentState::SingleAgentState(Position position_, TIME_TYPE time_): position(position_), time(time_) {
+SingleAgentState::SingleAgentState(const Position &position_, const TIME_TYPE &time_): position(position_), time(time_) {
 }
 
 size_t SingleAgentState::SingleStateAgentHasher::operator()(const State &s) const {

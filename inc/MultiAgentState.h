@@ -35,7 +35,7 @@ public:
      * Initialize this multi-agent-state by given time.
      * Sets time as -1 in default.
      */
-    MultiAgentState(int time_=0);
+    MultiAgentState(const TIME_TYPE &time_= -1);
 
     /**
      *
