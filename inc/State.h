@@ -6,6 +6,7 @@
 #define MAPF_CPP_STATE_H
 
 #include <stddef.h>
+#include <string>
 
 /**
  *
