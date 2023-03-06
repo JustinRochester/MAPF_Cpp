@@ -7,40 +7,40 @@
 
 /**
  *
- * This data type is used to representing whether there is passable or not, while reading the map.
+ * Represents whether there is passable or not, while reading the map.
  */
 typedef bool GRID_STATE;
 
 /**
  *
- * Represent that this grid cell is passable while reading the map.
+ * Represents that this grid cell is passable while reading the map.
  */
 const GRID_STATE PASSABLE = false;
 
 /**
  *
- * Represent that this grid cell is not passable while reading the map.
+ * Represents that this grid cell is not passable while reading the map.
  */
 const GRID_STATE UNPASSABLE = true;
 
 
 /**
  * 
- * This data type is used to describing the number in each axis of position.
+ * Describes the number in each axis of position.
  */
 typedef int GRID_TYPE;
 
 
 /**
  *
- * This data type is used to describing the value of time.
+ * Describes the value of time.
  */
 typedef int TIME_TYPE;
 
 
 /**
  *
- * This data type is used to describing the value of heuristic function.
+ * Describes the value of heuristic function.
  */
 typedef double HEURISTIC_TYPE;
 

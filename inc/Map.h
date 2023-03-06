@@ -17,8 +17,17 @@
  */
 class Map {
 protected:
+    /**
+     * map_height: height of this map.\n\n
+     * map_width: width of this map.
+     */
     int map_height, map_width;
+
+    /**
+     * map_value[i][j]: the state(passable of not) of this grid cell (i,j), which is started from (0,0).
+     */
     std::vector< std::vector<GRID_STATE> > map_value;
+
     /**
      *
      * Initialize the map with a all passable grid cells whose size is height * width.
