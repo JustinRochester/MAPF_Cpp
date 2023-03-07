@@ -23,6 +23,8 @@ public:
         cout<<Position::PositionHasher()(q)<<endl;
         cout<<(p+q)<<" "<<(p-q)<<endl;
         cout<<Position::PositionHasher()(p+q)<<" "<<Position::PositionHasher()(p-q)<<endl;
+        cout<<(p==q)<<" "<<(p!=q)<<endl;
+        cout<<(p==Position(7, 3))<<" "<<(p!=Position(7, 3))<<endl;
     }
 };
 

@@ -4,7 +4,7 @@
 
 #include "Position.h"
 
-Position::Position(const GRID_TYPE &y_, const GRID_TYPE &x_): x(y_), y(x_) {}
+Position::Position(const GRID_TYPE &y_, const GRID_TYPE &x_): y(y_), x(x_) {}
 
 void Position::setx(const GRID_TYPE &x_) {
     x=x_;
