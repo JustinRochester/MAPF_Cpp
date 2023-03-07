@@ -126,7 +126,7 @@ public:
      *
      * @return an instance of SingleAgentStateHasher.
      */
-    StateHasher & get_hasher() const override;
+    size_t get_hash() const override;
 };
 
 

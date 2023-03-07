@@ -18,7 +18,7 @@ public:
         cin>>t;
 
         cout<<(s==t)<<" "<<(s!=t)<<endl;
-        cout<<s.get_hasher()(s)<<" "<<t.get_hasher()(t)<<endl;
+        cout << s.get_hash() << " " << t.get_hash() << endl;
 
         cout<<s.apply(t.get_position())<<endl;
 

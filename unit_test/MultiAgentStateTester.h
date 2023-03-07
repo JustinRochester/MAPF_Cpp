@@ -28,7 +28,7 @@ public:
         MultiAgentState n;
         cin>>n;
         cout<<(m==n)<<" "<<(m!=n)<<endl;
-        cout<<m.get_hasher()(m)<<" "<<MultiAgentState::MultiAgentStateHasher()(n)<<endl;
+        cout << m.get_hash() << " " << MultiAgentState::MultiAgentStateHasher()(n) << endl;
 
         m.apply(vector<Vector>{Position(0, 0), Position(1, 2)});
         display(m);

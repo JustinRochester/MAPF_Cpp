@@ -20,8 +20,7 @@ MultiAgentState::MultiAgentState(const TIME_TYPE &time_): time(time_) {
 bool MultiAgentState::equalTo(const State &s) const {
     try {
         auto &rhs = dynamic_cast<const MultiAgentState &>(s);
-        MultiAgentStateHasher h;
-        if (h(*this) != h(rhs))
+        if (get_hash() != rhs.get_hash())
             return false;
 
         int agent_number = position.size();
@@ -60,9 +59,8 @@ void MultiAgentState::set_time(const TIME_TYPE &time_) {
     time = time_;
 }
 
-State::StateHasher &MultiAgentState::get_hasher() const {
-    MultiAgentStateHasher *h = new MultiAgentStateHasher();
-    return *h;
+size_t MultiAgentState::get_hash() const {
+    return MultiAgentStateHasher()(*this);
 }
 
 Position &MultiAgentState::operator[](int id) {

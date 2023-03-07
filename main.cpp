@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-#include "MultiAgentStateTester.h"
+#include "SingleAgentStateTester.h"
 
 int main() {
-    Tester *t = new MultiAgentStateTester();
+    Tester *t = new SingleAgentStateTester();
     t->test();
     return 0;
 }

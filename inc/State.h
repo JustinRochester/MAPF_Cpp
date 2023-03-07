@@ -59,7 +59,7 @@ public:
      *
      * It will be implemented on sub-class.
      */
-    virtual StateHasher & get_hasher() const = 0;
+    virtual size_t get_hash() const = 0;
 
     /**
      *

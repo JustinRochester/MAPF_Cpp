@@ -24,7 +24,7 @@ size_t SingleAgentState::SingleStateAgentHasher::operator()(const State &s) cons
 bool SingleAgentState::equalTo(const State &s) const {
     auto &other = dynamic_cast<const SingleAgentState&>(s);
     SingleStateAgentHasher h;
-    if(h(*this) != h(other))
+    if(get_hash() != other.get_hash())
         return false;
     return (position == other.position) && (time == other.time);
 }
@@ -63,7 +63,6 @@ SingleAgentState SingleAgentState::apply(const Vector &v) {
     return result;
 }
 
-State::StateHasher & SingleAgentState::get_hasher() const {
-    SingleStateAgentHasher *h = new SingleStateAgentHasher();
-    return *h;
+size_t SingleAgentState::get_hash() const {
+    return SingleStateAgentHasher()(*this);
 }

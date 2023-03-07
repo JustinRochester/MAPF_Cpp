@@ -130,7 +130,7 @@ public:
      *
      * @return an instance of MultiAgentStateHasher.
      */
-    StateHasher &get_hasher() const override;
+    size_t get_hash() const override;
 
     /**
      *
