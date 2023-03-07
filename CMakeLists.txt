@@ -47,3 +47,6 @@ add_executable(HeuristicMap main.cpp ${HeuristicMap_test} ${MapReader_test})
 
 set(SingleAgentState_test ${SingleAgentState_file} unit_test/SingleAgentStateTester.h)
 add_executable(SingleAgentState main.cpp ${SingleAgentState_test})
+
+set(MultiAgentState_test ${MultiAgentState_file} unit_test/MultiAgentStateTester.h)
+add_executable(MultiAgentState main.cpp ${MultiAgentState_test})

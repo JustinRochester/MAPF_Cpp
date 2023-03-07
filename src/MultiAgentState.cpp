@@ -91,7 +91,9 @@ std::ostream &operator<<(std::ostream &out, const MultiAgentState &s) {
 }
 
 std::istream &operator>>(std::istream &in, MultiAgentState &s) {
-    int agent_number = s.size();
+    int agent_number;
+    in >> agent_number;
+    s.position.assign(agent_number, Position());
     for(int i=0; i<agent_number; ++i)
         in >> s.position[i];
     return in >> s.time;

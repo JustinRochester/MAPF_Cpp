@@ -35,7 +35,7 @@ public:
      * Initialize this multi-agent-state by given time.
      * Sets time as -1 in default.
      */
-    MultiAgentState(const TIME_TYPE &time_= -1);
+    MultiAgentState(const TIME_TYPE &time_ = -1);
 
     /**
      *
@@ -90,7 +90,7 @@ public:
      *
      * @return read-only references of current time about this multi-agent-state.
      */
-    const TIME_TYPE & get_time() const;
+    const TIME_TYPE &get_time() const;
 
     /**
      *
@@ -106,7 +106,7 @@ public:
      *
      * It will output this multi-agent-state by transform it to string.
      */
-    friend std::ostream& operator << (std::ostream &out, const MultiAgentState &s);
+    friend std::ostream &operator<<(std::ostream &out, const MultiAgentState &s);
 
     /**
      *
@@ -114,12 +114,15 @@ public:
      * @param s a multi-agent-state which needs to be inputted.
      * @return the origin references of in-stream.
      */
-    friend std::istream& operator >> (std::istream &in, MultiAgentState &s);
+    friend std::istream &operator>>(std::istream &in, MultiAgentState &s);
 
     /**
      *
      * @param operation_list a vector list which will be applied to this multi-agent-state one by one.
      * @return a new multi-agent-state which equals to the origin state apply this vector list.
+     *
+     * It will read a number represents the number of agents, and then read positions of each agent(s).\n\n
+     * Time will be read in the last.
      */
     MultiAgentState apply(const std::vector<Vector> &operation_list);
 
@@ -136,7 +139,7 @@ public:
      *
      * It will throw an exception if id is out of the number ot agents.
      */
-    Position& operator [] (int id);
+    Position &operator[](int id);
 
     /**
      *
@@ -145,7 +148,7 @@ public:
      *
      * It will throw an exception if id is out of the number ot agents.
      */
-    const Position& operator [] (int id) const ;
+    const Position &operator[](int id) const;
 };
 
 
