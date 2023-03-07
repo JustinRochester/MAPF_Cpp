@@ -9,7 +9,7 @@ CloseList::CloseList() {
 }
 
 void CloseList::add(State *state) {
-    size_t hash_val = state->get_hasher()(*state);
+    size_t hash_val = state->get_hash();
 
     if(!close.count(hash_val))
         close[hash_val] = std::list<State*>();
@@ -21,7 +21,7 @@ void CloseList::add(State *state) {
 }
 
 bool CloseList::exists(State *state) {
-    size_t hash_val = state->get_hasher()(*state);
+    size_t hash_val = state->get_hash();
     if(!close.count(hash_val))
         return false;
     for(const State* check_state : close[hash_val])

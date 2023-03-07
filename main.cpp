@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-#include "SingleAgentStateTester.h"
+#include "CloseListTester.h"
 
 int main() {
-    Tester *t = new SingleAgentStateTester();
+    Tester *t = new CloseListTester();
     t->test();
     return 0;
 }

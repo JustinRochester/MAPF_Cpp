@@ -18,11 +18,11 @@ set(SingleAgentState_file inc/SingleAgentState.h src/SingleAgentState.cpp ${Posi
 set(MultiAgentState_file inc/MultiAgentState.h src/MultiAgentState.cpp ${Position_file} ${State_file})
 
 set(Node_file inc/Node.h src/Node.cpp ${common_file})
-set(Solver_file inc/Solver.h src/Solver.cpp ${common_file} ${Position_file} ${Map_file} ${Node_file})
-set(OpenList_file inc/OpenList.h src/OpenList.cpp ${Node_file})
 set(CloseList_file inc/CloseList.h src/CloseList.cpp ${State_file})
-
 set(AStarNode_file inc/AStarNode.h src/AStarNode.cpp ${common_file} ${MultiAgentState_file} ${Position_file} ${Node_file})
+set(OpenList_file inc/OpenList.h src/OpenList.cpp ${Node_file})
+
+set(Solver_file inc/Solver.h src/Solver.cpp ${common_file} ${Position_file} ${Map_file} ${Node_file})
 set(AStar_file inc/AStar.h src/AStar.cpp ${Solver_file} ${HeuristicMap_file} ${AStarNode_file} ${OpenList_file} ${CloseList_file})
 
 
@@ -32,9 +32,6 @@ add_executable(common main.cpp ${common_test})
 
 set(Position_test ${Position_file} unit_test/PositionTester.h)
 add_executable(Position main.cpp ${Position_test})
-
-set(Node_test ${Node_file} unit_test/NodeTester.h)
-add_executable(Node main.cpp ${Node_test})
 
 set(Map_test ${Map_file} unit_test/MapTester.h)
 add_executable(Map main.cpp ${Map_test})
@@ -50,3 +47,12 @@ add_executable(SingleAgentState main.cpp ${SingleAgentState_test})
 
 set(MultiAgentState_test ${MultiAgentState_file} unit_test/MultiAgentStateTester.h)
 add_executable(MultiAgentState main.cpp ${MultiAgentState_test})
+
+set(Node_test ${Node_file} unit_test/NodeTester.h)
+add_executable(Node main.cpp ${Node_test})
+
+set(CloseList_test ${CloseList_file} unit_test/CloseListTester.h)
+add_executable(CloseList main.cpp ${CloseList_test} ${SingleAgentState_test})
+
+set(OpenList_test ${OpenList_file} unit_test/OpenListTester.h)
+add_executable(OpenList main.cpp ${OpenList_test})
