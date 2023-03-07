@@ -54,5 +54,8 @@ add_executable(Node main.cpp ${Node_test})
 set(CloseList_test ${CloseList_file} unit_test/CloseListTester.h)
 add_executable(CloseList main.cpp ${CloseList_test} ${SingleAgentState_test})
 
+set(AStarNode_test ${AStarNode_file} unit_test/AStarNodeTester.h)
+add_executable(AStarNode main.cpp ${AStarNode_test})
+
 set(OpenList_test ${OpenList_file} unit_test/OpenListTester.h)
-add_executable(OpenList main.cpp ${OpenList_test})
+add_executable(OpenList main.cpp ${OpenList_test} ${AStarNode_file})

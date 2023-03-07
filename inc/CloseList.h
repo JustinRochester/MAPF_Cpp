@@ -10,18 +10,21 @@
 #include "State.h"
 
 /**
+ *
  * A class simulates the close list.\n\n
  * It will stores states in the open hashing table.
  */
 class CloseList {
 protected:
     /**
+     *
      * It stores states s in the list close[hash value of s].
      */
     std::unordered_map<size_t, std::list<State*> > close;
 
 public:
     /**
+     *
      * Initialize the close list with an empty unordered_map and none of list.
      */
     CloseList();
