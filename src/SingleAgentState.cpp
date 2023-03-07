@@ -15,9 +15,9 @@ size_t SingleAgentState::SingleStateAgentHasher::operator()(const State &s) cons
         return (h1 >> 13) ^ (h1 << 19) ^ h2;
     }
     catch(const char *msg) {
-        std::string s = msg;
-        s = s + "\nState s could not be dynamic casted to SingleAgentState";
-        throw s.c_str();
+        std::string str = msg;
+        str = str + "\nState s could not be dynamic casted to SingleAgentState";
+        throw str.c_str();
     }
 }
 

@@ -27,7 +27,7 @@ set(AStar_file inc/AStar.h src/AStar.cpp ${Solver_file} ${HeuristicMap_file} ${A
 
 
 
-set(common_test ${common_file} unit_test/commonTester.h)
+set(common_test ${common_file} unit_test/commonTester.h src/SingleAgentState.cpp)
 add_executable(common main.cpp ${common_test})
 
 set(Position_test ${Position_file} unit_test/PositionTester.h)
@@ -44,3 +44,6 @@ add_executable(MapReader main.cpp ${MapReader_test})
 
 set(HeuristicMap_test ${HeuristicMap_file} unit_test/HeuristicMapTester.h)
 add_executable(HeuristicMap main.cpp ${HeuristicMap_test} ${MapReader_test})
+
+set(SingleAgentState_test ${SingleAgentState_file} unit_test/SingleAgentStateTester.h)
+add_executable(SingleAgentState main.cpp ${SingleAgentState_test})

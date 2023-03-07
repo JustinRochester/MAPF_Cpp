@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-#include "HeuristicMapTester.h"
+#include "SingleAgentStateTester.h"
 
 int main() {
-    Tester *t = new HeuristicMapTester();
+    Tester *t = new SingleAgentStateTester();
     t->test();
     return 0;
 }
