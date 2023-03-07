@@ -38,3 +38,6 @@ add_executable(Node main.cpp ${Node_test})
 
 set(Map_test ${Map_file} unit_test/MapTester.h)
 add_executable(Map main.cpp ${Map_test})
+
+set(MapReader_test ${MapReader_file} unit_test/MapReaderTester.h)
+add_executable(MapReader main.cpp ${MapReader_test})

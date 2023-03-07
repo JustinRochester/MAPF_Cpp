@@ -89,3 +89,7 @@ const std::vector<Position> & MapReader::get_goal_positions() const {
 const Map & MapReader::get_maps() const {
     return maps;
 }
+
+int MapReader::get_agent_number() const {
+    return start_positions.size();
+}

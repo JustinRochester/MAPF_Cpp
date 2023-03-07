@@ -91,6 +91,12 @@ public:
 
     /**
      *
+     * @return the number of agents.
+     */
+    int get_agent_number() const;
+
+    /**
+     *
      * @return the read-only reference of start_positions array list.
      */
     const std::vector<Position> & get_start_positions() const;
