@@ -38,7 +38,7 @@ public:
      * Calculate the heuristic in all the passable grid with the map_value and the single goal position.
      * It should be ensured that goal position is passable.
      */
-    void calculate_heuristic(Map &maps, Position goal,
+    void calculate_heuristic(const Map &maps, const Position &goal,
                              const std::vector<std::pair<Vector, HEURISTIC_TYPE>> &allowed_operations);
 
     /**

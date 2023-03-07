@@ -9,11 +9,11 @@ HeuristicMap::HeuristicMap() {
     h_val.clear();
 }
 
-void HeuristicMap::calculate_heuristic(Map &maps, Position goal,
+void HeuristicMap::calculate_heuristic(const Map &maps, const Position &goal,
                                        const std::vector<std::pair<Vector, HEURISTIC_TYPE>> &allowed_operations) {
     int height = maps.get_height(), width = maps.get_width();
-    std::vector< std::vector<bool> > vised(height, std::vector<bool>(width));
-    h_val.assign(height, std::vector<HEURISTIC_TYPE>(width));
+    std::vector< std::vector<bool> > vised(height, std::vector<bool>(width, false));
+    h_val.assign(height, std::vector<HEURISTIC_TYPE>(width, 1.0 / 0.0));
 
     std::queue<Position> q;
     q.push(goal);
@@ -26,14 +26,17 @@ void HeuristicMap::calculate_heuristic(Map &maps, Position goal,
         HEURISTIC_TYPE now_h = h_val[now_position.gety()][now_position.getx()];
         for(auto [move, cost] : allowed_operations) {
             Position new_position = now_position + move;
-            if(new_position.gety() < 0 || new_position.gety() > height)
+            if(new_position.gety() < 0 || new_position.gety() >= height)
                 continue;
-            if(new_position.getx() < 0 || new_position.getx() > width)
+            if(new_position.getx() < 0 || new_position.getx() >= width)
+                continue;
+            if(maps[new_position.gety()][new_position.getx()])
                 continue;
             if(vised[new_position.gety()][new_position.getx()])
                 continue;
             vised[new_position.gety()][new_position.getx()] = true;
             h_val[new_position.gety()][new_position.getx()] = now_h + cost;
+            q.push(new_position);
         }
     }
 }

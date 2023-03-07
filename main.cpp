@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-#include "MapReaderTester.h"
+#include "HeuristicMapTester.h"
 
 int main() {
-    Tester *t = new MapReaderTester();
+    Tester *t = new HeuristicMapTester();
     t->test();
     return 0;
 }

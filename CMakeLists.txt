@@ -41,3 +41,6 @@ add_executable(Map main.cpp ${Map_test})
 
 set(MapReader_test ${MapReader_file} unit_test/MapReaderTester.h)
 add_executable(MapReader main.cpp ${MapReader_test})
+
+set(HeuristicMap_test ${HeuristicMap_file} unit_test/HeuristicMapTester.h)
+add_executable(HeuristicMap main.cpp ${HeuristicMap_test} ${MapReader_test})
