@@ -134,7 +134,7 @@ public:
 
     /**
      *
-     * @param id which agent' position will be got.
+     * @param id which agent's position will be got.
      * @return a references of position of the id-th agent.
      *
      * It will throw an exception if id is out of the number ot agents.
