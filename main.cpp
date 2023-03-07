@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-#include "commonTester.h"
+#include "PositionTester.h"
 
 int main() {
-    Tester *t = new commonTester();
+    Tester *t = new PositionTester();
     t->test();
     return 0;
 }

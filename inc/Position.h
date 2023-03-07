@@ -103,6 +103,8 @@ public:
      * @param in a reference of in-stream.
      * @param p the position which is need to be inputted.
      * @return the origin reference of in-stream.
+     *
+     * It will read the x and y for p, one by one.
      */
     friend std::istream& operator >> (std::istream& in, Position &p);
 
