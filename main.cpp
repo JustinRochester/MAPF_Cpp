@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-#include "AStarNodeTester.h"
+#include "OpenListTester.h"
 
 int main() {
-    Tester *t = new AStarNodeTester();
+    Tester *t = new OpenListTester();
     t->test();
     return 0;
 }

@@ -31,7 +31,7 @@ public:
 
 /**
  *
- * A class simulates the open list.
+ * A class simulates the open list.\n\n
  * It will compare two node by node priority and time one by one.
  */
 class OpenList : public std::priority_queue<
