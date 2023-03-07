@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-#include "PositionTester.h"
+#include "MapTester.h"
 
 int main() {
-    Tester *t = new PositionTester();
+    Tester *t = new MapTester();
     t->test();
     return 0;
 }

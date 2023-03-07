@@ -36,3 +36,5 @@ add_executable(Position main.cpp ${Position_test})
 set(Node_test ${Node_file} unit_test/NodeTester.h)
 add_executable(Node main.cpp ${Node_test})
 
+set(Map_test ${Map_file} unit_test/MapTester.h)
+add_executable(Map main.cpp ${Map_test})
