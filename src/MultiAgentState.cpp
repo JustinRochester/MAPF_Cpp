@@ -14,6 +14,9 @@ size_t MultiAgentState::MultiAgentStateHasher::operator()(const State &s) const 
 MultiAgentState::MultiAgentState(const TIME_TYPE &time_): time(time_) {
 }
 
+MultiAgentState::MultiAgentState(const MultiAgentState &other): time(other.time), positions(other.positions), State(other) {
+}
+
 bool MultiAgentState::equalTo(const State &s) const {
     try {
         auto &rhs = dynamic_cast<const MultiAgentState &>(s);

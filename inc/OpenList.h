@@ -55,6 +55,14 @@ public:
 
     /**
      *
+     * @param other source open list.
+     *
+     * Initialize this open list as the given source open list.
+     */
+    OpenList(const OpenList &other);
+
+    /**
+     *
      * @param node the node which will be pushed into this list.
      *
      * It will push this node into the open list with a timestamp.

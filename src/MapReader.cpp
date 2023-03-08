@@ -18,6 +18,9 @@ MapReader::MapReader() {
     goal_positions.clear();
 }
 
+MapReader::MapReader(const MapReader &other):start_positions(other.start_positions), goal_positions(other.start_positions), maps(other.maps) {
+}
+
 void MapReader::read_map(std::ifstream &map_fin) {
     std::string s;
     int height, width;
@@ -48,8 +51,8 @@ void MapReader::read_scenario(std::ifstream &scen_fin, int agents_number) {
     goal_positions.clear();
     for(int i=0; i < agents_number; ++i) {
         scen_fin >> bucket >> s >> width >> height >> start_x >> start_y >> goal_x >> goal_y >> optimal_length;
-        start_positions.emplace_back(start_x, start_y);
-        goal_positions.emplace_back(goal_x, goal_y);
+        start_positions.emplace_back(start_y, start_x);
+        goal_positions.emplace_back(goal_y, goal_x);
     }
 }
 

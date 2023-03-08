@@ -44,6 +44,14 @@ public:
 
     /**
      *
+     * @param other source single-agent state.
+     *
+     * Initialize this single-agent state as the given single-agent state.
+     */
+    SingleAgentState(const SingleAgentState &other);
+
+    /**
+     *
      * A hasher used to hash class SingleAgentState.
      */
     class SingleStateAgentHasher : public State::StateHasher{

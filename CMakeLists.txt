@@ -65,4 +65,4 @@ set(OpenList_test ${OpenList_file} unit_test/OpenListTester.h)
 add_executable(OpenList main.cpp ${OpenList_test} ${AStarNode_file})
 
 set(AStar_test ${AStar_file} unit_test/AStarTester.h)
-add_executable(AStar main.cpp ${AStar_test})
+add_executable(AStar main.cpp ${AStar_test} ${MapReader_file})

@@ -8,6 +8,9 @@ CloseList::CloseList() {
     close.clear();
 }
 
+CloseList::CloseList(const CloseList &other):close(other.close) {
+}
+
 void CloseList::add(State *state) {
     size_t hash_val = state->get_hash();
 

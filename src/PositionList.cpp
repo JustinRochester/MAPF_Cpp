@@ -17,6 +17,9 @@ PositionList::PositionList() {
     position_list.clear();
 }
 
+PositionList::PositionList(const PositionList &other):position_list(other.position_list) {
+}
+
 int PositionList::size() const {
     return position_list.size();
 }

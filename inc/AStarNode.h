@@ -37,6 +37,14 @@ public:
 
     /**
      *
+     * @param other source A* node.
+     *
+     * Initialize this A* node as the given source A* node.
+     */
+    AStarNode(const AStarNode& other);
+
+    /**
+     *
      * @param id which agent's positions will be got.
      * @return a references of positions of the id-th agent.
      *

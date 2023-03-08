@@ -40,6 +40,14 @@ public:
 
     /**
      *
+     * @param other source multi-agent state.
+     *
+     * Initialize this multi-agent state as the given source multi-agent state.
+     */
+    MultiAgentState(const MultiAgentState &other);
+
+    /**
+     *
      * A hasher used to hash class MultiAgentState.
      */
     class MultiAgentStateHasher : public State::StateHasher {

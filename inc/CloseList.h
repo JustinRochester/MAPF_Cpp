@@ -31,6 +31,14 @@ public:
 
     /**
      *
+     * @param other source close list.
+     *
+     * Initialize this close list as the given source close list.
+     */
+    CloseList(const CloseList& other);
+
+    /**
+     *
      * @param state the state which needs to be added to this close list.
      *
      * It will deal nothing if this state is in this close list.

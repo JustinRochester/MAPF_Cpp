@@ -8,6 +8,9 @@ Node::Node(const HEURISTIC_TYPE &g_, const HEURISTIC_TYPE &h_): g(g_), h(h_) {
     calculate_static_f();
 }
 
+Node::Node(const Node &other): g(other.g), h(other.h) {
+}
+
 void Node::calculate_static_f() {
     static_f = g+h;
 }

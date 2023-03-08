@@ -40,6 +40,14 @@ public:
 
     /**
      *
+     * @param other source position.
+     *
+     * Initialize this position as the given source position.
+     */
+    Position(const Position &other);
+
+    /**
+     *
      * @param y_ new first axis value.
      *
      * Update value of first axis(y) to y_.

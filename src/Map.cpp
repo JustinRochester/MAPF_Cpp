@@ -12,6 +12,9 @@ Map::Map(int map_height_, int map_width_) :map_height(map_height_), map_width(ma
     initial_map();
 }
 
+Map::Map(const Map &other):map_height(other.map_height), map_width(other.map_width), map_value(other.map_value) {
+}
+
 int Map::get_height() const {
     return map_height;
 }

@@ -7,6 +7,9 @@
 SingleAgentState::SingleAgentState(const Position &position_, const TIME_TYPE &time_): position(position_), time(time_) {
 }
 
+SingleAgentState::SingleAgentState(const SingleAgentState &other): position(other.position), time(other.time), State(other) {
+}
+
 size_t SingleAgentState::SingleStateAgentHasher::operator()(const State &s) const {
     try {
         auto &single_state = dynamic_cast<const SingleAgentState &>(s);

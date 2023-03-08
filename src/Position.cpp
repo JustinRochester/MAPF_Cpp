@@ -8,6 +8,8 @@
 
 Position::Position(const GRID_TYPE &y_, const GRID_TYPE &x_): y(y_), x(x_) {}
 
+Position::Position(const Position &other):y(other.y), x(other.x) {}
+
 void Position::setx(const GRID_TYPE &x_) {
     x=x_;
 }

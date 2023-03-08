@@ -42,6 +42,14 @@ public:
 
     /**
      *
+     * @param other source position list.
+     *
+     * Initialize this position list as the given source position list.
+     */
+    PositionList(const PositionList &other);
+
+    /**
+     *
      * @return the number of agents in the positions list.
      */
     int size() const;

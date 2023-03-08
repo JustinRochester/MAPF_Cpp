@@ -76,6 +76,14 @@ public:
 
     /**
      *
+     * @param other source map reader.
+     *
+     * Initialize this map reader as the given source map reader.
+     */
+    MapReader(const MapReader &other);
+
+    /**
+     *
      * @param map_name name of map, for example: "Berlin_1_256";
      * @param type "even" or "random";
      * @param scen_name_id id of the scenario about this map. It should be ensured that id is in [1,25];

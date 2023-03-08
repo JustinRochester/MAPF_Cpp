@@ -9,6 +9,9 @@ HeuristicMap::HeuristicMap() {
     h_val.clear();
 }
 
+HeuristicMap::HeuristicMap(const HeuristicMap &other):h_val(other.h_val) {
+}
+
 void HeuristicMap::calculate_heuristic(const Map &maps, const Position &goal,
                                        const std::vector<std::pair<Vector, HEURISTIC_TYPE>> &allowed_operations) {
     int height = maps.get_height(), width = maps.get_width();

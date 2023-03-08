@@ -14,6 +14,12 @@ bool OpenListComparer::operator()(const std::pair<Node*, int> &a, const std::pai
 OpenList::OpenList():timestamp(0) {
 }
 
+OpenList::OpenList(const OpenList &other):timestamp(other.timestamp), std::priority_queue<
+            std::pair<Node*, int>,
+            std::vector< std::pair<Node*, int> >,
+            OpenListComparer
+        >(other) {}
+
 void OpenList::push_node(Node *node) {
     std::priority_queue<
             std::pair<Node*, int>,

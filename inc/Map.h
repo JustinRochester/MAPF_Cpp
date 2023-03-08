@@ -54,6 +54,14 @@ public:
 
     /**
      *
+     * @param other source map.
+     *
+     * Initialize this map as the given source map.
+     */
+    Map(const Map &other);
+
+    /**
+     *
      * @return a integer, which represents height of this map.
      */
     int get_height() const;

@@ -31,6 +31,14 @@ public:
 
     /**
      *
+     * @param other source heuristic map.
+     *
+     * Initialize this heuristic map as the given source heuristic map.
+     */
+    HeuristicMap(const HeuristicMap &other);
+
+    /**
+     *
      * @param maps detail information about this map.
      * @param goal positions of this single goal positions.
      * @param allowed_movements the allowed movements and its cost in this task.

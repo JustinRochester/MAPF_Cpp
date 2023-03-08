@@ -68,6 +68,14 @@ public:
 
     /**
      *
+     * @param other source solver.
+     *
+     * Initialize this solver as the given source solver.
+     */
+    Solver(const Solver &other);
+
+    /**
+     *
      * @param start_positions_ start positions for each agents which will be set to this problem.
      * @param goal_positions_ goal positions for each agents which will be set to this problem.
      *
@@ -91,18 +99,20 @@ public:
     /**
      *
      * @param node pointer of the node which will be expanded to open list.
+     * @return if it expands a node successfully(not in the close).
      *
      * It will increase expanded_node_number by 1 automatically.
      */
-    virtual void expand_nodes(const Node *node);
+    virtual bool expand_nodes(Node *node);
 
     /**
      *
      * @param node pointer of the node which will be generated.
+     * @return if it generated a node successfully(not in the close).
      *
      * It will increase expanded_node_number by 1 automatically.
      */
-    virtual void generate_nodes(const Node *node);
+    virtual bool generate_nodes(Node *node);
 
     /**
      *

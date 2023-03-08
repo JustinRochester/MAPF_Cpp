@@ -5,7 +5,9 @@
 #include "AStarNode.h"
 
 AStarNode::AStarNode(HEURISTIC_TYPE g_, HEURISTIC_TYPE h_): Node(g_, h_) {
-    agents_state.get_positions().clear();
+}
+
+AStarNode::AStarNode(const AStarNode &other): Node(other), agents_state(other.agents_state) {
 }
 
 Position& AStarNode::operator[](int id) {

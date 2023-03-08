@@ -12,6 +12,13 @@ Solver::Solver() {
     clear_nodes();
 }
 
+Solver::Solver(const Solver &other) : agents_number(other.agents_number), start_positions(other.start_positions),
+                                      goal_positions(other.goal_positions),
+                                      expanded_node_number(other.expanded_node_number),
+                                      generated_node_number(other.generated_node_number), maps(other.maps),
+                                      allowed_operations(other.allowed_operations) {
+}
+
 void Solver::set_problem(const std::vector<Position> &start_positions_, const std::vector<Position> &goal_positions_) {
     start_positions = start_positions_;
     goal_positions = goal_positions_;
@@ -27,18 +34,18 @@ void Solver::clear_nodes() {
     generated_node_number = 0;
 }
 
-void Solver::expand_nodes(const Node *node) {
+bool Solver::expand_nodes(Node *node) {
     ++expanded_node_number;
 }
 
-void Solver::generate_nodes(const Node *node) {
+bool Solver::generate_nodes(Node *node) {
     ++generated_node_number;
 }
 
-std::vector< std::pair<Vector, HEURISTIC_TYPE> > &Solver::get_allowed_operations() {
+std::vector<std::pair<Vector, HEURISTIC_TYPE> > &Solver::get_allowed_operations() {
     return allowed_operations;
 }
 
-const std::vector< std::pair<Vector, HEURISTIC_TYPE> > &Solver::get_allowed_operations() const {
+const std::vector<std::pair<Vector, HEURISTIC_TYPE> > &Solver::get_allowed_operations() const {
     return allowed_operations;
 }
