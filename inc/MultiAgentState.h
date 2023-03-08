@@ -7,6 +7,7 @@
 
 #include <vector>
 #include "Position.h"
+#include "PositionList.h"
 #include "State.h"
 
 /**
@@ -19,7 +20,7 @@ protected:
      *
      * Current positions of these agent(in this state).
      */
-    std::vector<Position> position;
+    PositionList positions;
 
     /**
      *
@@ -76,15 +77,15 @@ public:
 
     /**
      *
-     * @return references of current position list about this multi-agent-state.
+     * @return references of current positions list about this multi-agent-state.
      */
-    std::vector<Position> &get_position();
+    PositionList & get_positions();
 
     /**
      *
-     * @return read-only references of current position list about this multi-agent-state.
+     * @return read-only references of current positions list about this multi-agent-state.
      */
-    const std::vector<Position> &get_position() const;
+    const PositionList & get_positions() const;
 
     /**
      *
@@ -134,8 +135,8 @@ public:
 
     /**
      *
-     * @param id which agent's position will be got.
-     * @return a references of position of the id-th agent.
+     * @param id which agent's positions will be got.
+     * @return a references of positions of the id-th agent.
      *
      * It will throw an exception if id is out of the number ot agents.
      */
@@ -143,8 +144,8 @@ public:
 
     /**
      *
-     * @param id which agent' position will be got.
-     * @return a read-only references of position of the id-th agent.
+     * @param id which agent' positions will be got.
+     * @return a read-only references of positions of the id-th agent.
      *
      * It will throw an exception if id is out of the number ot agents.
      */

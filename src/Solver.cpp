@@ -27,11 +27,11 @@ void Solver::clear_nodes() {
     generated_node_number = 0;
 }
 
-void Solver::expand_nodes(const Node &node) {
+void Solver::expand_nodes(const Node *node) {
     ++expanded_node_number;
 }
 
-void Solver::generate_nodes(const Node &node) {
+void Solver::generate_nodes(const Node *node) {
     ++generated_node_number;
 }
 

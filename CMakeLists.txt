@@ -9,13 +9,14 @@ include_directories("unit_test")
 
 set(common_file inc/common.h src/common.cpp)
 set(Position_file inc/Position.h src/Position.cpp ${common_file})
+set(PositionList_file inc/PositionList.h src/PositionList.cpp ${Position_file})
 set(Map_file inc/Map.h src/Map.cpp ${common_file} ${Position_file})
 set(MapReader_file inc/MapReader.h src/MapReader.cpp ${common_file} ${Position_file} ${Map_file})
 set(HeuristicMap_file inc/HeuristicMap.h src/HeuristicMap.cpp ${common_file} ${Position_file} ${Map_file})
 
 set(State_file inc/State.h src/State.cpp)
 set(SingleAgentState_file inc/SingleAgentState.h src/SingleAgentState.cpp ${Position_file} ${State_file})
-set(MultiAgentState_file inc/MultiAgentState.h src/MultiAgentState.cpp ${Position_file} ${State_file})
+set(MultiAgentState_file inc/MultiAgentState.h src/MultiAgentState.cpp ${Position_file} ${State_file} ${PositionList_file})
 
 set(Node_file inc/Node.h src/Node.cpp ${common_file})
 set(CloseList_file inc/CloseList.h src/CloseList.cpp ${State_file})
@@ -32,6 +33,9 @@ add_executable(common main.cpp ${common_test})
 
 set(Position_test ${Position_file} unit_test/PositionTester.h)
 add_executable(Position main.cpp ${Position_test})
+
+set(PositionList_test ${PositionList_file} unit_test/PositionListTester.h)
+add_executable(PositionList main.cpp ${PositionList_test})
 
 set(Map_test ${Map_file} unit_test/MapTester.h)
 add_executable(Map main.cpp ${Map_test})
@@ -59,3 +63,6 @@ add_executable(AStarNode main.cpp ${AStarNode_test})
 
 set(OpenList_test ${OpenList_file} unit_test/OpenListTester.h)
 add_executable(OpenList main.cpp ${OpenList_test} ${AStarNode_file})
+
+set(AStar_test ${AStar_file} unit_test/AStarTester.h)
+add_executable(AStar main.cpp ${AStar_test})

@@ -15,13 +15,13 @@
 
 /**
  *
- * A class describing the current position and time of a single agent.
+ * A class describing the current positions and time of a single agent.
  */
 class SingleAgentState : public State{
 protected:
     /**
      *
-     * Current position of this agent(in this state).
+     * Current positions of this agent(in this state).
      */
     Position position;
 
@@ -34,11 +34,11 @@ protected:
 public:
     /**
      *
-     * @param position_ current position in this state.
+     * @param position_ current positions in this state.
      * @param time_ current time in this state.
      *
-     * Initialize this single-agent-state by given position and time.
-     * Sets position as initial position and sets time as -1 in default.
+     * Initialize this single-agent-state by given positions and time.
+     * Sets positions as initial positions and sets time as -1 in default.
      */
     SingleAgentState(const Position &position_= Position(), const TIME_TYPE &time_= -1);
 
@@ -75,7 +75,7 @@ public:
 
     /**
      *
-     * @return read-only reference of current position about this single-agent-state.
+     * @return read-only reference of current positions about this single-agent-state.
      */
     const Position & get_position() const;
 
@@ -87,7 +87,7 @@ public:
 
     /**
      *
-     * @param position_ new position used to update the current position of this single-agent-state.
+     * @param position_ new positions used to update the current positions of this single-agent-state.
      */
     void set_position(const Position &position_);
 

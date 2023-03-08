@@ -32,11 +32,11 @@ public:
     /**
      *
      * @param maps detail information about this map.
-     * @param goal position of this single goal position.
+     * @param goal positions of this single goal positions.
      * @param allowed_movements the allowed movements and its cost in this task.
      *
-     * Calculate the heuristic in all the passable grid with the map_value and the single goal position.
-     * It should be ensured that goal position is passable.
+     * Calculate the heuristic in all the passable grid with the map_value and the single goal positions.
+     * It should be ensured that goal positions is passable.
      */
     void calculate_heuristic(const Map &maps, const Position &goal,
                              const std::vector<std::pair<Vector, HEURISTIC_TYPE>> &allowed_operations);

@@ -7,10 +7,7 @@
 size_t MultiAgentState::MultiAgentStateHasher::operator()(const State &s) const {
     auto &multi_state = dynamic_cast<const MultiAgentState&>(s);
     std::hash<TIME_TYPE> h;
-    Position::PositionHasher position_hash;
-    size_t h1 = 0, h2 = h(multi_state.time);
-    for(Position position : multi_state.position)
-        h1 = (h1 << 3) ^ (h1 >> 29) ^ position_hash(position);
+    size_t h1 = multi_state.positions.get_hash(), h2 = h(multi_state.time);
     return (h1>>13) ^ (h1<<19) ^ h2;
 }
 
@@ -22,33 +19,25 @@ bool MultiAgentState::equalTo(const State &s) const {
         auto &rhs = dynamic_cast<const MultiAgentState &>(s);
         if (get_hash() != rhs.get_hash())
             return false;
-
-        int agent_number = position.size();
-        if (agent_number != rhs.position.size())
-            return false;
-
-        for (int i = 0; i < agent_number; ++i)
-            if (position[i] != rhs.position[i])
-                return false;
-        return true;
+        return positions != rhs.positions;
     }
     catch(const char *msg) {
-        std::string s = msg;
-        s += "\nState s could not be dynamic casted to MultiAgentState.";
-        throw s.c_str();
+        std::string str = msg;
+        str += "\nState s could not be dynamic casted to MultiAgentState.";
+        throw str.c_str();
     }
 }
 
 int MultiAgentState::size() {
-    return position.size();
+    return positions.size();
 }
 
-std::vector<Position> &MultiAgentState::get_position() {
-    return position;
+PositionList & MultiAgentState::get_positions() {
+    return positions;
 }
 
-const std::vector<Position> &MultiAgentState::get_position() const {
-    return position;
+const PositionList & MultiAgentState::get_positions() const {
+    return positions;
 }
 
 const TIME_TYPE & MultiAgentState::get_time() const {
@@ -64,24 +53,21 @@ size_t MultiAgentState::get_hash() const {
 }
 
 Position &MultiAgentState::operator[](int id) {
-    if(id < position.size())
-        return position[id];
+    if(id < positions.size())
+        return positions[id];
     else
         throw "Out of agent numbers";
 }
 
 const Position &MultiAgentState::operator[](int id) const {
-    if(id < position.size())
-        return position[id];
+    if(id < positions.size())
+        return positions[id];
     else
         throw "Out of agent numbers";
 }
 
 MultiAgentState::operator std::string() const {
-    std::string s = "<";
-    for(Position agent_position : position)
-        s += (std::string)(agent_position) + ",";
-    return s + std::to_string(time) + ">";
+    return "<" + std::to_string(time) + "," + (std::string)(positions) + ">";
 }
 
 std::ostream &operator<<(std::ostream &out, const MultiAgentState &s) {
@@ -89,19 +75,14 @@ std::ostream &operator<<(std::ostream &out, const MultiAgentState &s) {
 }
 
 std::istream &operator>>(std::istream &in, MultiAgentState &s) {
-    int agent_number;
-    in >> agent_number;
-    s.position.assign(agent_number, Position());
-    for(int i=0; i<agent_number; ++i)
-        in >> s.position[i];
-    return in >> s.time;
+    return in >> s.positions >> s.time;
 }
 
 MultiAgentState MultiAgentState::apply(const std::vector<Vector> &operation_list) {
     MultiAgentState result = *this;
     int agent_number = size();
     for(int i=0; i<agent_number; ++i)
-        result.position[i] += operation_list[i];
+        result.positions[i] += operation_list[i];
     return result;
 }
 

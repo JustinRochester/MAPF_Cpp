@@ -26,7 +26,7 @@ const GRID_STATE UNPASSABLE = true;
 
 /**
  * 
- * Describes the number in each axis of position.
+ * Describes the number in each axis of positions.
  */
 typedef int GRID_TYPE;
 

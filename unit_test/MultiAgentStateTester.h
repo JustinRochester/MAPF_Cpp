@@ -11,7 +11,7 @@
 class MultiAgentStateTester : public Tester {
 public:
     void display(const MultiAgentState &m) {
-        for(const auto &pos : m.get_position())
+        for(const auto &pos : m.get_positions().get_position_list())
             cout<<pos<<" ";
         cout<<endl;
         cout<<m.get_time()<<endl;
@@ -22,7 +22,7 @@ public:
         cout<<m<<endl;
 
         m.set_time(3);
-        m.get_position() = vector<Position>{Position(2,4), Position(3, 6)};
+        m.get_positions().get_position_list() = vector<Position>{Position(2, 4), Position(3, 6)};
         cout<<m<<endl;
 
         MultiAgentState n;

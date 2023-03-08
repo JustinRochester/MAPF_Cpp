@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-#include "OpenListTester.h"
+#include "MultiAgentStateTester.h"
 
 int main() {
-    Tester *t = new OpenListTester();
+    Tester *t = new MultiAgentStateTester();
     t->test();
     return 0;
 }

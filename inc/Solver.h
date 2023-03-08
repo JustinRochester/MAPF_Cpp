@@ -90,19 +90,19 @@ public:
 
     /**
      *
-     * @param node the node which will be expanded to open list.
+     * @param node pointer of the node which will be expanded to open list.
      *
      * It will increase expanded_node_number by 1 automatically.
      */
-    virtual void expand_nodes(const Node &node);
+    virtual void expand_nodes(const Node *node);
 
     /**
      *
-     * @param node the node which will be generated.
+     * @param node pointer of the node which will be generated.
      *
      * It will increase expanded_node_number by 1 automatically.
      */
-    virtual void generate_nodes(const Node &node);
+    virtual void generate_nodes(const Node *node);
 
     /**
      *
@@ -121,6 +121,13 @@ public:
      * @return read-only reference of the array list of allowed operations.
      */
     virtual const std::vector< std::pair<Vector, HEURISTIC_TYPE> > &get_allowed_operations() const ;
+
+    /**
+     *
+     * @param node pointer of the node which will be checked whether it is a goal node.
+     * @return true means it is a goal node, vice versa.
+     */
+    virtual bool is_goal_node(const Node *node) const = 0;
 };
 
 

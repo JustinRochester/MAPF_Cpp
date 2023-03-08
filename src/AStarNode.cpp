@@ -5,11 +5,11 @@
 #include "AStarNode.h"
 
 AStarNode::AStarNode(HEURISTIC_TYPE g_, HEURISTIC_TYPE h_): Node(g_, h_) {
-    agents_state.get_position().clear();
+    agents_state.get_positions().clear();
 }
 
 Position& AStarNode::operator[](int id) {
-    if(id < agents_state.get_position().size())
+    if(id < agents_state.get_positions().size())
         return agents_state[id];
     else
         throw "Out of number of agents";
@@ -25,7 +25,7 @@ const MultiAgentState &AStarNode::get_state() const {
 
 
 AStarNode AStarNode::apply(const std::vector<std::pair<Vector, HEURISTIC_TYPE>> &operation_list) {
-    int agent_number = agents_state.get_position().size();
+    int agent_number = agents_state.get_positions().size();
     AStarNode result = *this;
 
     std::vector<Vector> move_list(agent_number, Vector());

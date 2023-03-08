@@ -37,8 +37,8 @@ public:
 
     /**
      *
-     * @param id which agent's position will be got.
-     * @return a references of position of the id-th agent.
+     * @param id which agent's positions will be got.
+     * @return a references of positions of the id-th agent.
      *
      * It will throw an exception if id is out of the number ot agents.
      */
@@ -59,7 +59,7 @@ public:
     /**
      *
      * @param operation_list an operator list with allowed move vector and its cost at each term.
-     * @return a new A* node with a updated cost and position for each agents.
+     * @return a new A* node with a updated cost and positions for each agents.
      */
     AStarNode apply(const std::vector<std::pair<Vector, HEURISTIC_TYPE>> &operation_list);
 };
