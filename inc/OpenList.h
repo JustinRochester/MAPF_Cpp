@@ -34,17 +34,23 @@ public:
  * A class simulates the open list.\n\n
  * It will compare two node by node priority and time one by one.
  */
-class OpenList : public std::priority_queue<
-            std::pair<Node*, int>,
-            std::vector< std::pair<Node*, int> >,
-            OpenListComparer
-        > {
+class OpenList {
 protected:
     /**
      *
      * It stores the current number of nodes which has been push into this open list.
      */
     int timestamp;
+
+    /**
+     *
+     * It stores pointers of the current nodes, and could get the best one.
+     */
+    std::priority_queue<
+            std::pair<Node*, int>,
+            std::vector< std::pair<Node*, int> >,
+            OpenListComparer
+    > open_priority_queue;
 
 public:
     /**
@@ -63,17 +69,42 @@ public:
 
     /**
      *
+     * Delete all the node pointer in the open list.
+     */
+    ~OpenList();
+
+    /**
+     *
      * @param node the node which will be pushed into this list.
      *
-     * It will push this node into the open list with a timestamp.
+     * It will push this node into the open list with a timestamp.\n\n
+     * Please push a new pointer node, like 'push(new XXXNode(yyy))'.
      */
-    void push_node(Node *node);
+    void push(Node *node);
 
     /**
      *
      * @return the read-only pointer to the node with the highest priority.
      */
-    const Node* top_node() const;
+    const Node* top() const;
+
+    /**
+     *
+     * Pop the node with the highest priority and delete it automatically.
+     */
+    void pop();
+
+    /**
+     *
+     * @return true means that this open list is empty, vice versa.
+     */
+    bool empty() const;
+
+    /**
+     *
+     * @return the number of pointer this open list stored.
+     */
+    int size() const;
 };
 
 

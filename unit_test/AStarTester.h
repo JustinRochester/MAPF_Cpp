@@ -26,8 +26,8 @@ public:
     void run() override {
         Solver *solver = new AStar();
         MapReader reader;
-        reader.load_scenario("room-32-32-4", "random", 25, 2);
-//        reader.load_scenario("empty-8-8", "random", 6, 2);
+        reader.load_scenario("room-32-32-4", "random", 14, 2);
+//        reader.load_scenario("empty-8-8", "random", 6, 3);
 
         display_map(reader.get_maps());
         display_problem(reader.get_start_positions(), reader.get_goal_positions());

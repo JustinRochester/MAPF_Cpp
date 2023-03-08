@@ -59,6 +59,12 @@ public:
 
     /**
      *
+     * A virtual destructor method.
+     */
+    virtual ~Node();
+
+    /**
+     *
      * @param h_ the new estimating cost of path from this node to goal node.
      *
      * Update the h value of this node as h_.

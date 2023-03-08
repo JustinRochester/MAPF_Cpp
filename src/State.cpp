@@ -4,6 +4,8 @@
 
 #include "State.h"
 
+State::~State() = default;
+
 bool State::operator==(const State &s) const {
     return equalTo(s);
 }

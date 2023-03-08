@@ -30,12 +30,12 @@ public:
          });
         node2.get_state().set_time(5);
 
-        open.push_node(&node1);
-        open.push_node(&node2);
-        auto now = dynamic_cast<const AStarNode *>(open.top_node());
+        open.push(&node1);
+        open.push(&node2);
+        auto now = dynamic_cast<const AStarNode *>(open.top());
         display(*now); cout<<endl;
         open.pop();
-        now = dynamic_cast<const AStarNode *>(open.top_node());
+        now = dynamic_cast<const AStarNode *>(open.top());
         display(*now); cout<<endl;
     }
 };

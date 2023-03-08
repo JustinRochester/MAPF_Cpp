@@ -39,9 +39,22 @@ public:
 
     /**
      *
+     * Delete all the pointer in this close list automatically.
+     */
+    void clear();
+
+    /**
+     *
+     * Delete all the pointer in this close list automatically by calling clear method.
+     */
+    ~CloseList();
+
+    /**
+     *
      * @param state the state which needs to be added to this close list.
      *
-     * It will deal nothing if this state is in this close list.
+     * It will deal nothing if this state is in this close list.\n\n
+     * Please add a new pointer state, like 'add(new XXXState(yyy))'.
      */
     void add(State *state);
 
@@ -50,7 +63,7 @@ public:
      * @param state the state which needs to be checked whether it is in this close list.
      * @return true means this state is in the close list, vice versa.
      */
-    bool exists(State *state);
+    bool exists(const State *state);
 };
 
 

@@ -18,6 +18,12 @@ class State {
 public:
     /**
      *
+     * A virtual destructor method.
+     */
+    virtual ~State();
+
+    /**
+     *
      * An abstract class used to hash the outer class.
      */
     class StateHasher {

@@ -14,26 +14,33 @@ bool OpenListComparer::operator()(const std::pair<Node*, int> &a, const std::pai
 OpenList::OpenList():timestamp(0) {
 }
 
-OpenList::OpenList(const OpenList &other):timestamp(other.timestamp), std::priority_queue<
-            std::pair<Node*, int>,
-            std::vector< std::pair<Node*, int> >,
-            OpenListComparer
-        >(other) {}
-
-void OpenList::push_node(Node *node) {
-    std::priority_queue<
-            std::pair<Node*, int>,
-            std::vector< std::pair<Node*, int> >,
-            OpenListComparer
-    >::emplace(node, ++timestamp);
+OpenList::OpenList(const OpenList &other):timestamp(other.timestamp), open_priority_queue(other.open_priority_queue) {
 }
 
-const Node *OpenList::top_node() const {
-    return std::priority_queue<
-            std::pair<Node*, int>,
-            std::vector< std::pair<Node*, int> >,
-            OpenListComparer
-    >::top().first;
+OpenList::~OpenList() {
+    while(!empty())
+        pop();
+}
+
+void OpenList::push(Node *node) {
+    open_priority_queue.emplace(node, ++timestamp);
+}
+
+const Node *OpenList::top() const {
+    return open_priority_queue.top().first;
+}
+
+void OpenList::pop() {
+    delete top();
+    open_priority_queue.pop();
+}
+
+bool OpenList::empty() const {
+    return open_priority_queue.empty();
+}
+
+int OpenList::size() const {
+    return open_priority_queue.size();
 }
 
 

@@ -12,6 +12,8 @@ Node::Node(const Node &other): g(other.g), h(other.h) {
     calculate_static_f();
 }
 
+Node::~Node() = default;
+
 void Node::calculate_static_f() {
     static_f = g+h;
 }

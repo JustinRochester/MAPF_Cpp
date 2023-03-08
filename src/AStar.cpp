@@ -32,20 +32,18 @@ void AStar::solve() {
     AStarNode *initial_node = new AStarNode(0, 0, agents_number);
     initial_node->get_state() = initial_state;
     calculate_heuristic(initial_node);
-    open.push_node(initial_node);
+    open.push(new AStarNode(*initial_node));
+    delete initial_node;
 
     while(!open.empty()) {
-        auto now_node = dynamic_cast<const AStarNode *>(open.top_node());
+        AStarNode *now_node = new AStarNode(*dynamic_cast<const AStarNode *>(open.top()));
         open.pop();
-//        std::cout<<now_node->get_state()<<" "<<now_node->get_g()<<" "<<now_node->get_h()<<" "<<now_node->get_static_f()<<"\n";
         if(is_goal_node(now_node)) {
             solution = now_node->get_g();
             return;
         }
         expand_child_nodes(now_node);
-
-        MultiAgentState now_state = now_node->get_state();
-        close.add(&now_state);
+        close.add(new MultiAgentState(now_node->get_state()));
         delete now_node;
     }
 }
@@ -115,7 +113,7 @@ bool AStar::expand_nodes(Node *node) {
     MultiAgentState state = a_star_node->get_state();
     if(close.exists(&state))
         return false;
-    open.push_node(node);
+    open.push(node);
     Solver::expand_nodes(node);
     return true;
 }
