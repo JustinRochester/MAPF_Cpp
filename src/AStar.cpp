@@ -29,7 +29,7 @@ void AStar::solve() {
     MultiAgentState initial_state(0);
     initial_state.get_positions().get_position_list() = start_positions;
 
-    AStarNode *initial_node = new AStarNode();
+    AStarNode *initial_node = new AStarNode(0, 0, agents_number);
     initial_node->get_state() = initial_state;
     calculate_heuristic(initial_node);
     open.push_node(initial_node);
@@ -38,8 +38,10 @@ void AStar::solve() {
         auto now_node = dynamic_cast<const AStarNode *>(open.top_node());
         open.pop();
 //        std::cout<<now_node->get_state()<<" "<<now_node->get_g()<<" "<<now_node->get_h()<<" "<<now_node->get_static_f()<<"\n";
-        if(is_goal_node(now_node))
-            return ;
+        if(is_goal_node(now_node)) {
+            solution = now_node->get_g();
+            return;
+        }
         expand_child_nodes(now_node);
 
         MultiAgentState now_state = now_node->get_state();
@@ -48,16 +50,24 @@ void AStar::solve() {
     }
 }
 
-void AStar::search_moves(AStarNode *node, int agent_id,
-                         std::unordered_set<PositionList, PositionList::PositionListHasher> reservation_table) {
+void AStar::search_moves(AStarNode *node, int agent_id) {
     if(agent_id == -1) {
         calculate_heuristic(node);
-        generate_nodes(node);
+        generate_nodes(new AStarNode(*node));
         return;
     }
-    PositionList positions;
+    Position now_position = node->get_state()[agent_id];
+    Position ban_position = Position(-1, -1);
+    if(constraint_set.count(now_position))
+        ban_position = constraint_set[now_position];
+
+    HEURISTIC_TYPE now_g = node->get_g();
+    bool at_goal = (now_position == goal_positions[agent_id]);
+
     for(const auto &[move, cost] : allowed_operations) {
-        Position next_position = node->get_state()[agent_id] + move;
+        Position next_position = now_position + move;
+        if(constraint_set.count(next_position) || next_position == ban_position)
+            continue;
         if(next_position.gety() < 0 || next_position.gety() >= maps.get_height() )
             continue;
         if(next_position.getx() < 0 || next_position.getx() >= maps.get_width() )
@@ -65,29 +75,39 @@ void AStar::search_moves(AStarNode *node, int agent_id,
         if(maps[next_position.gety()][next_position.getx()] == UNPASSABLE)
             continue;
 
-        std::unordered_set<PositionList, PositionList::PositionListHasher> new_reservation_table = reservation_table;
+        constraint_set[next_position] = now_position;
 
-        positions.get_position_list() = std::vector<Position>({next_position});
-        if(new_reservation_table.count(positions))
-            continue;
-        new_reservation_table.insert(positions);
-
-        positions.get_position_list().push_back(node->get_state()[agent_id]);
-        if(new_reservation_table.count(positions))
-            continue;
-        new_reservation_table.insert(positions);
+        HEURISTIC_TYPE next_g = now_g;
+        int stop_time = -1;
+        if(at_goal) {
+            if(move != Position(0, 0))
+                next_g += node->get_state().get_time() - node->get_stop_time()[agent_id];
+            else
+                stop_time = node->get_stop_time()[agent_id];
+        }
+        else {
+            next_g += cost;
+            if(next_position == goal_positions[agent_id])
+                stop_time = node->get_state().get_time();
+        }
 
         AStarNode *new_node = new AStarNode(*node);
-        new_node->set_g(node->get_g()+cost);
+        new_node->set_g(next_g);
         new_node->get_state()[agent_id] = next_position;
-        search_moves(new_node, agent_id-1, new_reservation_table);
+        new_node->get_stop_time()[agent_id] = stop_time;
+        search_moves(new_node, agent_id - 1);
+
+        constraint_set.erase(next_position);
+        delete new_node;
     }
 }
 
 void AStar::expand_child_nodes(const AStarNode *node) {
     AStarNode *now_node = new AStarNode(*node);
     now_node->get_state().set_time(node->get_state().get_time() + 1);
-    search_moves(now_node, agents_number-1, std::unordered_set<PositionList, PositionList::PositionListHasher>());
+    constraint_set.clear();
+    search_moves(now_node, agents_number - 1);
+    delete now_node;
 }
 
 bool AStar::expand_nodes(Node *node) {

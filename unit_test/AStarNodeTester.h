@@ -15,7 +15,7 @@ public:
         cout<<node.get_state()<<endl;
     }
     void run() override {
-        AStarNode node(1, 5);
+        AStarNode node(1, 5, 0);
         node.get_state().set_time(3);
         node.get_state().get_positions() = vector<Position>({Position(3, 2), Position(1, 5)});
         display(node);

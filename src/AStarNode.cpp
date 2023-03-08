@@ -4,10 +4,12 @@
 
 #include "AStarNode.h"
 
-AStarNode::AStarNode(HEURISTIC_TYPE g_, HEURISTIC_TYPE h_): Node(g_, h_) {
+AStarNode::AStarNode(HEURISTIC_TYPE g_, HEURISTIC_TYPE h_, int agent_number) : Node(g_, h_) {
+    agents_state.get_positions().get_position_list().assign(agent_number, Position());
+    stop_time.assign(agent_number, -1);
 }
 
-AStarNode::AStarNode(const AStarNode &other): Node(other), agents_state(other.agents_state) {
+AStarNode::AStarNode(const AStarNode &other): Node(other), agents_state(other.agents_state), stop_time(other.stop_time) {
 }
 
 Position& AStarNode::operator[](int id) {
@@ -37,4 +39,8 @@ AStarNode AStarNode::apply(const std::vector<std::pair<Vector, HEURISTIC_TYPE>> 
     }
     result.agents_state = result.agents_state.apply(move_list);
     return result;
+}
+
+std::vector<int> &AStarNode::get_stop_time() {
+    return stop_time;
 }

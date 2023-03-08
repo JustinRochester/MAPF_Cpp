@@ -6,24 +6,31 @@
 #define MAPF_CPP_ASTAR_H
 
 #include <vector>
-#include <unordered_set>
+#include <unordered_map>
 #include "Solver.h"
 #include "HeuristicMap.h"
 #include "AStarNode.h"
 #include "OpenList.h"
 #include "CloseList.h"
-#include "PositionList.h"
 
 class AStar : public Solver{
 protected:
+    class PositionEqualer {
+    public:
+        bool operator() (const Position &a, const Position &b) const {
+            return a==b;
+        }
+    };
+
     std::vector<HeuristicMap> heuristic_maps;
     OpenList open;
     CloseList close;
+    std::unordered_map<Position, Position,
+        Position::PositionHasher,PositionEqualer> constraint_set;
 
     void expand_child_nodes(const AStarNode *node);
 
-    void search_moves(AStarNode *node, int agent_id,
-                      std::unordered_set<PositionList, PositionList::PositionListHasher> reservation_table);
+    void search_moves(AStarNode *node, int agent_id);
 
 public:
     AStar();

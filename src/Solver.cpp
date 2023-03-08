@@ -9,6 +9,7 @@ Solver::Solver() {
     start_positions.clear();
     goal_positions.clear();
     agents_number = 0;
+    solution = -1;
     clear_nodes();
 }
 
@@ -16,7 +17,8 @@ Solver::Solver(const Solver &other) : agents_number(other.agents_number), start_
                                       goal_positions(other.goal_positions),
                                       expanded_node_number(other.expanded_node_number),
                                       generated_node_number(other.generated_node_number), maps(other.maps),
-                                      allowed_operations(other.allowed_operations) {
+                                      allowed_operations(other.allowed_operations),
+                                      solution(other.solution) {
 }
 
 void Solver::set_problem(const std::vector<Position> &start_positions_, const std::vector<Position> &goal_positions_) {
@@ -48,4 +50,8 @@ std::vector<std::pair<Vector, HEURISTIC_TYPE> > &Solver::get_allowed_operations(
 
 const std::vector<std::pair<Vector, HEURISTIC_TYPE> > &Solver::get_allowed_operations() const {
     return allowed_operations;
+}
+
+HEURISTIC_TYPE Solver::get_solution() const {
+    return solution;
 }

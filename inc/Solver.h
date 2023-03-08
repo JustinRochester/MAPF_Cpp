@@ -25,6 +25,13 @@ protected:
 
     /**
      *
+     * The solution of this planning problem.\n\n
+     * It means that solution not exists if solution < 0.
+     */
+    HEURISTIC_TYPE solution;
+
+    /**
+     *
      * Start positions for each agents.
      */
     std::vector<Position> start_positions;
@@ -73,6 +80,8 @@ public:
      * Initialize this solver as the given source solver.
      */
     Solver(const Solver &other);
+
+    HEURISTIC_TYPE get_solution() const;
 
     /**
      *

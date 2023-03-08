@@ -162,7 +162,7 @@ public:
          * @param p positions which will need to got its hash value.
          * @return hash value of positions p.
          */
-        size_t operator () (const Position &p);
+        size_t operator () (const Position &p) const;
     };
 };
 

@@ -73,7 +73,7 @@ Position Position::operator - (const Position &rhs) const {
     return lhs -= rhs;
 }
 
-size_t Position::PositionHasher::operator()(const Position &p)  {
+size_t Position::PositionHasher::operator()(const Position &p) const {
     std::hash<GRID_TYPE> h;
     size_t hx = h(p.x), hy = h(p.y);
     return (hx<<7) ^ (hx>>15) ^ hy;

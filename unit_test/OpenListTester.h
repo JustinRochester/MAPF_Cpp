@@ -17,7 +17,7 @@ public:
     }
     void run() override {
         OpenList open;
-        AStarNode node1(3,5), node2(4,2);
+        AStarNode node1(3, 5, 0), node2(4, 2, 0);
         node1.get_state().get_positions() = vector<Position> ({
             Position(2, 3),
             Position(3, 5)

@@ -24,6 +24,13 @@ protected:
      */
     MultiAgentState agents_state;
 
+    /**
+     *
+     * Time of stopping in the goal for each agent.\n\n
+     * Some of the values will be set as -1 if these agents are not in the goal.
+     */
+    std::vector<int> stop_time;
+
 public:
     /**
      *
@@ -33,7 +40,7 @@ public:
      * Initialize this A* node with a empty multi-agents state and given cost.\n\n
      * Costs of g and h will be set as 0 by default.
      */
-    AStarNode(HEURISTIC_TYPE g_=0, HEURISTIC_TYPE h_=0);
+    AStarNode(HEURISTIC_TYPE g_ = 0, HEURISTIC_TYPE h_ = 0, int agent_number = 0);
 
     /**
      *
@@ -70,6 +77,12 @@ public:
      * @return a new A* node with a updated cost and positions for each agents.
      */
     AStarNode apply(const std::vector<std::pair<Vector, HEURISTIC_TYPE>> &operation_list);
+
+    /**
+     *
+     * @return reference of stop_time array list for each agents.
+     */
+    std::vector<int>& get_stop_time();
 };
 
 

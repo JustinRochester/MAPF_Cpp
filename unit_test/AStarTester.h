@@ -14,7 +14,7 @@ public:
     void display_map(const Map &maps) {
         for(int i=0; i<maps.get_height(); ++i) {
             for (int j = 0; j < maps.get_width(); ++j)
-                cout << " *"[maps[i][j]];
+                cout << "01"[maps[i][j]];
             cout << endl;
         }
     }
@@ -26,8 +26,8 @@ public:
     void run() override {
         Solver *solver = new AStar();
         MapReader reader;
-//        reader.load_scenario("room-32-32-4", "random", 25, 2);
-        reader.load_scenario("empty-8-8", "random", 14, 2);
+        reader.load_scenario("room-32-32-4", "random", 25, 2);
+//        reader.load_scenario("empty-8-8", "random", 6, 2);
 
         display_map(reader.get_maps());
         display_problem(reader.get_start_positions(), reader.get_goal_positions());
@@ -44,6 +44,7 @@ public:
         solver->clear_nodes();
 
         solver->solve();
+        cout<<solver->get_solution();
     }
 };
 
