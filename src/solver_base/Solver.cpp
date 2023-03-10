@@ -21,6 +21,10 @@ Solver::Solver(const Solver &other) : agents_number(other.agents_number), start_
                                       solution(other.solution) {
 }
 
+Solver::~Solver() {
+    clear_nodes();
+}
+
 void Solver::set_problem(const std::vector<Position> &start_positions_, const std::vector<Position> &goal_positions_) {
     start_positions = start_positions_;
     goal_positions = goal_positions_;
@@ -34,6 +38,9 @@ void Solver::set_map(const Map &maps_) {
 void Solver::clear_nodes() {
     expanded_node_number = 0;
     generated_node_number = 0;
+    for(const State * state : state_log)
+        delete state;
+    state_log.clear();
 }
 
 bool Solver::expand_nodes(Node *node) {
@@ -58,4 +65,15 @@ HEURISTIC_TYPE Solver::get_solution() const {
     if(solution == SOLUTION_NOT_FOUND)
         throw "Solution has not been found!";
     return solution;
+}
+
+void Solver::find_solutions(const Node *node) {
+    solution = node->get_g();
+    for(const State * state : solution_path)
+        delete state;
+    solution_path.clear();
+}
+
+const std::vector<const State *> &Solver::get_solution_path() const {
+    return solution_path;
 }

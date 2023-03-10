@@ -44,7 +44,10 @@ public:
         solver->clear_nodes();
 
         solver->solve();
-        cout<<solver->get_solution();
+        cout<<solver->get_solution()<<endl;
+        for(auto state : solver->get_solution_path())
+            cout<<(string)(*state)<<endl;
+        cout<<endl;
     }
 };
 

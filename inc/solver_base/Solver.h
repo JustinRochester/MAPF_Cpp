@@ -10,6 +10,7 @@
 #include "Position.h"
 #include "Map.h"
 #include "Node.h"
+#include "State.h"
 
 /**
  *
@@ -72,6 +73,18 @@ protected:
      */
     std::vector< std::pair<Vector, HEURISTIC_TYPE> > allowed_operations;
 
+    /**
+     *
+     * Stores the path for each states.
+     */
+    std::vector<const State *> state_log;
+
+    /**
+     *
+     * Stores the whole path in the solution.
+     */
+     std::vector<const State *> solution_path;
+
 public:
     /**
      *
@@ -86,6 +99,12 @@ public:
      * Initialize this solver as the given source solver.
      */
     Solver(const Solver &other);
+
+    /**
+     *
+     * clear the nodes construct by this solver.
+     */
+    ~Solver();
 
     /**
      *
@@ -113,7 +132,8 @@ public:
     /**
      *
      * Clear all nodes in this solver.\n\n
-     * In other word, it will set expanded_node_number and generated_node_number to be 0.
+     * In other word, it will set expanded_node_number and generated_node_number to be 0.\n\n
+     * And then, it will free all the states holds in state_log.
      */
     void clear_nodes();
 
@@ -159,6 +179,16 @@ public:
      * @return true means it is a goal node, vice versa.
      */
     virtual bool is_goal_node(const Node *node) const = 0;
+
+    /**
+     *
+     * @param node goal node.
+     *
+     * Defines some follow-up operations after find out the solution.
+     */
+    virtual void find_solutions(const Node *node);
+
+    const std::vector<const State*>& get_solution_path() const;
 };
 
 

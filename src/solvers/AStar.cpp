@@ -37,8 +37,10 @@ void AStar::solve() {
     while(!open.empty()) {
         auto now_node = open.top_safe<AStarNode>();
         open.pop();
+        state_log.push_back(new MultiAgentState(now_node->get_state()));
+
         if(is_goal_node(now_node)) {
-            solution = now_node->get_g();
+            find_solutions(now_node);
             return;
         }
         expand_child_nodes(now_node);
@@ -47,8 +49,9 @@ void AStar::solve() {
     }
 }
 
-void AStar::search_moves(AStarNode *node, int agent_id) {
+void AStar::search_moves(AStarNode *node, int agent_id, const State *previous_state) {
     if(agent_id == -1) {
+        node->get_state().set_previous_state(previous_state);
         calculate_heuristic(node);
         generate_nodes(node);
         return;
@@ -88,7 +91,7 @@ void AStar::search_moves(AStarNode *node, int agent_id) {
         new_node->set_g(next_g);
         new_node->get_state()[agent_id] = next_position;
         new_node->get_stop_time()[agent_id] = stop_time;
-        search_moves(new_node, agent_id - 1);
+        search_moves(new_node, agent_id - 1, previous_state);
 
         constraint_set.erase(next_position);
         delete new_node;
@@ -99,7 +102,7 @@ void AStar::expand_child_nodes(const AStarNode *node) {
     AStarNode *now_node = new AStarNode(*node);
     now_node->get_state().set_time(node->get_state().get_time() + 1);
     constraint_set.clear();
-    search_moves(now_node, agents_number - 1);
+    search_moves(now_node, agents_number - 1, state_log.back());
     delete now_node;
 }
 
@@ -126,5 +129,12 @@ bool AStar::is_goal_node(const Node *node) const {
         if(result_node->get_state()[i] != goal_positions[i])
             return false;
     return true;
+}
+
+void AStar::find_solutions(const Node *node) {
+    Solver::find_solutions(node);
+    for(const State* state = state_log.back(); state != nullptr; state = state->get_previous_state())
+        solution_path.push_back(state);
+    std::reverse(solution_path.begin(), solution_path.end());
 }
 

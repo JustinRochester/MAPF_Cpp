@@ -23,7 +23,7 @@ protected:
 
     void expand_child_nodes(const AStarNode *node);
 
-    void search_moves(AStarNode *node, int agent_id);
+    void search_moves(AStarNode *node, int agent_id, const State *previous_state);
 
 public:
     AStar();
@@ -40,6 +40,8 @@ public:
     void solve() override;
 
     bool is_goal_node(const Node *node) const override;
+
+    void find_solutions(const Node *node) override;
 };
 
 

@@ -15,7 +15,24 @@
  * And it has been overrode its equal-to operation and not-equal-to operation.
  */
 class State {
+protected:
+    const State *previous_state;
+
 public:
+    /**
+     *
+     * Initialize this state with a null previous state.
+     */
+    State();
+
+
+    /**
+     *
+     * @param other source state.
+     *
+     * Initialize this state as the given source state.
+     */
+    State(const State &other);
     /**
      *
      * A virtual destructor method.
@@ -72,6 +89,10 @@ public:
      * @return a string which describes this state.
      */
     virtual operator std::string() const = 0;
+
+    const State * get_previous_state() const;
+
+    void set_previous_state(const State *previousState);
 };
 
 
