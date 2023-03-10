@@ -43,7 +43,7 @@ void AStar::solve() {
             return;
         }
         expand_child_nodes(now_node);
-        close.add(new MultiAgentState(now_node->get_state()));
+        close.add_safe(&now_node->get_state());
         delete now_node;
     }
 }

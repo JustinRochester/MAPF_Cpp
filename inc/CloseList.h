@@ -60,6 +60,26 @@ public:
 
     /**
      *
+     * @tparam T a subclass of Node.
+     * @param state the state with class T which will be added into this list.
+     *
+     * Safe mode of add.\n\n
+     * It will throw a exception if T isn't a subclass of State.
+     */
+    template<class T>
+    void add_safe(const T* state) {
+        try {
+            add(new T(*state));
+        }
+        catch(const char *msg) {
+            std::string s = msg;
+            s += "\nIt isn't a sub-class of State.";
+            throw s.c_str();
+        }
+    }
+
+    /**
+     *
      * @param state the state which needs to be checked whether it is in this close list.
      * @return true means this state is in the close list, vice versa.
      */
