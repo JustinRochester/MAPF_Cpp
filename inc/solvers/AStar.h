@@ -15,18 +15,11 @@
 
 class AStar : public Solver{
 protected:
-    class PositionEqualer {
-    public:
-        bool operator() (const Position &a, const Position &b) const {
-            return a==b;
-        }
-    };
-
     std::vector<HeuristicMap> heuristic_maps;
     OpenList open;
     CloseList close;
     std::unordered_map<Position, Position,
-        Position::PositionHasher,PositionEqualer> constraint_set;
+        Position::PositionHasher> constraint_set;
 
     void expand_child_nodes(const AStarNode *node);
 
