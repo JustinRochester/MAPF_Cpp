@@ -9,7 +9,7 @@ Solver::Solver() {
     start_positions.clear();
     goal_positions.clear();
     agents_number = 0;
-    solution = -1;
+    solution = SOLUTION_NOT_FOUND;
     clear_nodes();
 }
 
@@ -55,5 +55,7 @@ const std::vector<std::pair<Vector, HEURISTIC_TYPE> > &Solver::get_allowed_opera
 }
 
 HEURISTIC_TYPE Solver::get_solution() const {
+    if(solution == SOLUTION_NOT_FOUND)
+        throw "Solution has not been found!";
     return solution;
 }

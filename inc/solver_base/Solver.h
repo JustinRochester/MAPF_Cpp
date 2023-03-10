@@ -13,6 +13,12 @@
 
 /**
  *
+ * It means that the solution has not been found.
+ */
+const HEURISTIC_TYPE SOLUTION_NOT_FOUND = -1;
+
+/**
+ *
  * An abstract class of each solver for MAPF problem.
  */
 class Solver {
@@ -81,6 +87,12 @@ public:
      */
     Solver(const Solver &other);
 
+    /**
+     *
+     * @return the solution length of this planning task.
+     *
+     * It will throw an exception if the solution has not been found.
+     */
     HEURISTIC_TYPE get_solution() const;
 
     /**
