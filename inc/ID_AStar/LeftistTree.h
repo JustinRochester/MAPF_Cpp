@@ -134,13 +134,19 @@ public:
      * It is different from method merge by calling get_root method before merge.\n\n
      * It will happen nothing if one of x or y is nullptr, or x is y.
      */
-    friend LeftistTree* merge_root(LeftistTree *x, LeftistTree *y);
+    friend LeftistTree* merge_set(LeftistTree *x, LeftistTree *y);
 
     /**
      *
      * @return a array list of value for each leftist-tree-node in this set ordered by pre-order.
      */
     std::vector<int> get_pre_order() const;
+
+    /**
+     *
+     * @return is this leftist-tree-node is a root node.
+     */
+    bool is_root() const;
 };
 
 

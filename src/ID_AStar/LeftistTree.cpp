@@ -82,7 +82,7 @@ LeftistTree *merge(LeftistTree *x, LeftistTree *y) {
     return x;
 }
 
-LeftistTree *merge_root(LeftistTree *x, LeftistTree *y) {
+LeftistTree *merge_set(LeftistTree *x, LeftistTree *y) {
     return merge(x->get_root(), y->get_root());
 }
 
@@ -102,4 +102,8 @@ std::vector<int> LeftistTree::get_pre_order() const {
             stk.push(now_node->right_child);
     }
     return result;
+}
+
+bool LeftistTree::is_root() const {
+    return parent == nullptr;
 }
