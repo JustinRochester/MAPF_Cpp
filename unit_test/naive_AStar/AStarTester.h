@@ -26,7 +26,8 @@ public:
     void run() override {
         Solver *solver = new AStar();
         MapReader reader;
-        reader.load_scenario("room-32-32-4", "random", 3, 2);
+        int agent_number = 2;
+        reader.load_scenario("room-32-32-4", "random", 3, agent_number);
 //        reader.load_scenario("empty-8-8", "random", 6, 3);
 
         display_map(reader.get_maps());
@@ -51,9 +52,8 @@ public:
 
         solver->solve();
         cout<<solver->get_solution()<<endl;
-        for(auto state : solver->get_solution_path())
-            cout<<(string)(*state)<<endl;
-        cout<<endl;
+        for(int i=0; i<agent_number; ++i)
+            cout<<i<<"\t:"<<(dynamic_cast<const AStar*>(solver)->get_agent_path(i))<<endl;
     }
 };
 

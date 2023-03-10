@@ -44,6 +44,8 @@ public:
     bool is_goal_node(const Node *node) const override;
 
     void find_solutions(const Node *node) override;
+
+    PositionList get_agent_path(int k) const;
 };
 
 

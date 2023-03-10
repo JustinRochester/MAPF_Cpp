@@ -145,3 +145,22 @@ void AStar::clear_nodes() {
     close.clear();
 }
 
+PositionList AStar::get_agent_path(int k) const {
+    if(k >= agents_number)
+        throw "Out of the number of agents";
+    std::vector<Position> path;
+    for(const State* state : solution_path)
+        path.push_back(
+                (*dynamic_cast<const MultiAgentState*>(state))[k]
+        );
+    for(int now_length = path.size(); now_length > 1; --now_length)
+        if(path[now_length - 1] != path[now_length - 2])
+            break;
+        else
+            path.pop_back();
+
+    PositionList result;
+    result.get_position_list() = path;
+    return result;
+}
+
