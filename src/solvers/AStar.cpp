@@ -29,11 +29,10 @@ void AStar::solve() {
     MultiAgentState initial_state(0);
     initial_state.get_positions().get_position_list() = start_positions;
 
-    AStarNode *initial_node = new AStarNode(0, 0, agents_number);
-    initial_node->get_state() = initial_state;
-    calculate_heuristic(initial_node);
-    open.push_safe(initial_node);
-    delete initial_node;
+    AStarNode initial_node(0, 0, agents_number);
+    initial_node.get_state() = initial_state;
+    calculate_heuristic(&initial_node);
+    open.push_safe(&initial_node);
 
     while(!open.empty()) {
         auto now_node = open.top_safe<AStarNode>();
@@ -66,11 +65,7 @@ void AStar::search_moves(AStarNode *node, int agent_id) {
         Position next_position = now_position + move;
         if(constraint_set.count(next_position) || next_position == ban_position)
             continue;
-        if(next_position.gety() < 0 || next_position.gety() >= maps.get_height() )
-            continue;
-        if(next_position.getx() < 0 || next_position.getx() >= maps.get_width() )
-            continue;
-        if(maps[next_position.gety()][next_position.getx()] == UNPASSABLE)
+        if(!maps.check_passable(next_position))
             continue;
 
         constraint_set[next_position] = now_position;

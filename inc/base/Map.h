@@ -100,6 +100,13 @@ public:
      * It will throw a exception if the selecting row is out of the bound.
      */
     const std::vector<GRID_STATE>& operator [] (int row) const;
+
+    /**
+     *
+     * @param p the position which needs to be checked whether this position is passable.
+     * @return true means passable, vice versa.
+     */
+    bool check_passable(const Position& p) const;
 };
 
 

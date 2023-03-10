@@ -42,3 +42,11 @@ const std::vector<GRID_STATE> &Map::operator[](int row) const {
     else
         throw "Out of map";
 }
+
+bool Map::check_passable(const Position &p) const {
+    if(p.gety() < 0 || p.gety() >= map_height)
+        return false;
+    if(p.getx() < 0 || p.getx() >= map_width)
+        return false;
+    return map_value[p.gety()][p.getx()] == PASSABLE;
+}
