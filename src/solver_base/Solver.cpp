@@ -41,6 +41,7 @@ void Solver::clear_nodes() {
     for(const State * state : state_log)
         delete state;
     state_log.clear();
+    solution_path.clear();
 }
 
 bool Solver::expand_nodes(Node *node) {

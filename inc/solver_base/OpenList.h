@@ -72,6 +72,12 @@ public:
      *
      * Delete all the node pointer in the open list.
      */
+    void clear();
+
+    /**
+     *
+     * Delete all the node pointer in the open list by call the method clear().
+     */
     ~OpenList();
 
     /**

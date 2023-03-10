@@ -26,6 +26,7 @@ void AStar::calculate_heuristic(AStarNode *node) const {
 }
 
 void AStar::solve() {
+    clear_nodes();
     MultiAgentState initial_state(0);
     initial_state.get_positions().get_position_list() = start_positions;
 
@@ -136,5 +137,11 @@ void AStar::find_solutions(const Node *node) {
     for(const State* state = state_log.back(); state != nullptr; state = state->get_previous_state())
         solution_path.push_back(state);
     std::reverse(solution_path.begin(), solution_path.end());
+}
+
+void AStar::clear_nodes() {
+    Solver::clear_nodes();
+    open.clear();
+    close.clear();
 }
 

@@ -48,6 +48,12 @@ public:
         for(auto state : solver->get_solution_path())
             cout<<(string)(*state)<<endl;
         cout<<endl;
+
+        solver->solve();
+        cout<<solver->get_solution()<<endl;
+        for(auto state : solver->get_solution_path())
+            cout<<(string)(*state)<<endl;
+        cout<<endl;
     }
 };
 

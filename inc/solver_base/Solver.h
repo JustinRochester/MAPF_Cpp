@@ -135,7 +135,7 @@ public:
      * In other word, it will set expanded_node_number and generated_node_number to be 0.\n\n
      * And then, it will free all the states holds in state_log.
      */
-    void clear_nodes();
+    virtual void clear_nodes();
 
     /**
      *

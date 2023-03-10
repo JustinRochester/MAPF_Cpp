@@ -9,6 +9,7 @@ include_directories(
         "inc/states"
         "inc/solver_base"
         "inc/naive_AStar"
+        "inc/ID_AStar"
         )
 include_directories(
         "src"
@@ -16,6 +17,7 @@ include_directories(
         "src/states"
         "src/solver_base"
         "src/naive_AStar"
+        "src/ID_AStar"
         )
 include_directories(
         "unit_test"
@@ -23,6 +25,7 @@ include_directories(
         "unit_test/states"
         "unit_test/solver_base"
         "unit_test/naive_AStar"
+        "unit_test/ID_AStar"
         )
 
 set(common_file inc/base/common.h src/base/common.cpp)
@@ -43,6 +46,8 @@ set(Solver_file inc/solver_base/Solver.h src/solver_base/Solver.cpp ${common_fil
 
 set(AStarNode_file inc/naive_AStar/AStarNode.h src/naive_AStar/AStarNode.cpp ${common_file} ${MultiAgentState_file} ${Position_file} ${Node_file})
 set(AStar_file inc/naive_AStar/AStar.h src/naive_AStar/AStar.cpp ${Solver_file} ${HeuristicMap_file} ${AStarNode_file} ${OpenList_file} ${CloseList_file})
+
+set(IndependenceDetection_file inc/ID_AStar/IndependenceDetection.h src/ID_AStar/IndependenceDetection.cpp)
 
 
 
@@ -84,3 +89,6 @@ add_executable(OpenList main.cpp ${OpenList_test} ${AStarNode_file})
 
 set(AStar_test ${AStar_file} unit_test/naive_AStar/AStarTester.h)
 add_executable(AStar main.cpp ${AStar_test} ${MapReader_file})
+
+set(IndependenceDetection_test ${IndependenceDetection_file} unit_test/ID_AStar/IndependenceDetectionTester.h)
+add_executable(IndependenceDetection main.cpp ${IndependenceDetection_test} ${MapReader_file})

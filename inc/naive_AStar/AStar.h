@@ -28,6 +28,8 @@ protected:
 public:
     AStar();
 
+    void clear_nodes() override;
+
     void calculate_heuristic(AStarNode *node) const;
 
     bool expand_nodes(Node *node) override;

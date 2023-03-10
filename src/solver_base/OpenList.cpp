@@ -17,9 +17,13 @@ OpenList::OpenList():timestamp(0) {
 OpenList::OpenList(const OpenList &other):timestamp(other.timestamp), open_priority_queue(other.open_priority_queue) {
 }
 
-OpenList::~OpenList() {
+void OpenList::clear() {
     while(!empty())
         pop();
+}
+
+OpenList::~OpenList() {
+    clear();
 }
 
 void OpenList::push(Node *node) {
