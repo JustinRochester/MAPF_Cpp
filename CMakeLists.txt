@@ -34,6 +34,7 @@ set(PositionList_file inc/base/PositionList.h src/base/PositionList.cpp ${Positi
 set(Map_file inc/base/Map.h src/base/Map.cpp ${common_file} ${Position_file})
 set(MapReader_file inc/base/MapReader.h src/base/MapReader.cpp ${common_file} ${Position_file} ${Map_file})
 set(HeuristicMap_file inc/base/HeuristicMap.h src/base/HeuristicMap.cpp ${common_file} ${Position_file} ${Map_file})
+set(AgentPath_file inc/base/AgentPath.h src/base/AgentPath.cpp ${PositionList_file})
 
 set(State_file inc/states/State.h src/states/State.cpp)
 set(SingleAgentState_file inc/states/SingleAgentState.h src/states/SingleAgentState.cpp ${Position_file} ${State_file})
@@ -68,6 +69,9 @@ add_executable(MapReader main.cpp ${MapReader_test})
 
 set(HeuristicMap_test ${HeuristicMap_file} unit_test/base/HeuristicMapTester.h)
 add_executable(HeuristicMap main.cpp ${HeuristicMap_test} ${MapReader_test})
+
+set(AgentPath_test ${AgentPath_file} unit_test/base/AgentPathTester.h)
+add_executable(AgentPath main.cpp ${AgentPath_test})
 
 set(SingleAgentState_test ${SingleAgentState_file} unit_test/states/SingleAgentStateTester.h)
 add_executable(SingleAgentState main.cpp ${SingleAgentState_test})

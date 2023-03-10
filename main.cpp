@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-#include "AStarTester.h"
+#include "AgentPathTester.h"
 
 int main() {
-    Tester *t = new AStarTester();
+    Tester *t = new AgentPathTester();
     t->test();
     return 0;
 }

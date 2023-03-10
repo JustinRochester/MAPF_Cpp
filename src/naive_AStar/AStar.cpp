@@ -4,6 +4,7 @@
 
 #include <unordered_set>
 #include "AStar.h"
+#include "AgentPath.h"
 
 AStar::AStar() {
     heuristic_maps.clear();
@@ -145,7 +146,7 @@ void AStar::clear_nodes() {
     close.clear();
 }
 
-PositionList AStar::get_agent_path(int k) const {
+AgentPath AStar::get_agent_path(int k) const {
     if(k >= agents_number)
         throw "Out of the number of agents";
     std::vector<Position> path;
@@ -159,7 +160,7 @@ PositionList AStar::get_agent_path(int k) const {
         else
             path.pop_back();
 
-    PositionList result;
+    AgentPath result;
     result.get_position_list() = path;
     return result;
 }

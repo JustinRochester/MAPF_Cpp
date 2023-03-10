@@ -61,7 +61,7 @@ public:
      *
      * It will throw an exception if out of the number of agents.
      */
-    Position& operator [] (int id);
+    virtual Position& operator [] (int id);
 
     /**
      *
@@ -70,7 +70,7 @@ public:
      *
      * It will throw an exception if out of the number of agents.
      */
-    const Position& operator [] (int id) const;
+    virtual const Position& operator [] (int id) const;
 
     /**
      *

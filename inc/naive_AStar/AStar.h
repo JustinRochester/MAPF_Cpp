@@ -12,6 +12,7 @@
 #include "AStarNode.h"
 #include "OpenList.h"
 #include "CloseList.h"
+#include "AgentPath.h"
 
 class AStar : public Solver{
 protected:
@@ -45,7 +46,7 @@ public:
 
     void find_solutions(const Node *node) override;
 
-    PositionList get_agent_path(int k) const;
+    AgentPath get_agent_path(int k) const;
 };
 
 
