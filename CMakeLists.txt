@@ -8,21 +8,21 @@ include_directories(
         "inc/base"
         "inc/states"
         "inc/solver_base"
-        "inc/AStar"
+        "inc/naive_AStar"
         )
 include_directories(
         "src"
         "src/base"
         "src/states"
         "src/solver_base"
-        "src/AStar"
+        "src/naive_AStar"
         )
 include_directories(
         "unit_test"
         "unit_test/base"
         "unit_test/states"
         "unit_test/solver_base"
-        "unit_test/AStar"
+        "unit_test/naive_AStar"
         )
 
 set(common_file inc/base/common.h src/base/common.cpp)
@@ -41,8 +41,8 @@ set(CloseList_file inc/solver_base/CloseList.h src/solver_base/CloseList.cpp ${S
 set(OpenList_file inc/solver_base/OpenList.h src/solver_base/OpenList.cpp ${Node_file})
 set(Solver_file inc/solver_base/Solver.h src/solver_base/Solver.cpp ${common_file} ${Position_file} ${Map_file} ${Node_file})
 
-set(AStarNode_file inc/AStar/AStarNode.h src/AStar/AStarNode.cpp ${common_file} ${MultiAgentState_file} ${Position_file} ${Node_file})
-set(AStar_file inc/AStar/AStar.h src/AStar/AStar.cpp ${Solver_file} ${HeuristicMap_file} ${AStarNode_file} ${OpenList_file} ${CloseList_file})
+set(AStarNode_file inc/naive_AStar/AStarNode.h src/naive_AStar/AStarNode.cpp ${common_file} ${MultiAgentState_file} ${Position_file} ${Node_file})
+set(AStar_file inc/naive_AStar/AStar.h src/naive_AStar/AStar.cpp ${Solver_file} ${HeuristicMap_file} ${AStarNode_file} ${OpenList_file} ${CloseList_file})
 
 
 
@@ -76,11 +76,11 @@ add_executable(Node main.cpp ${Node_test})
 set(CloseList_test ${CloseList_file} unit_test/solver_base/CloseListTester.h)
 add_executable(CloseList main.cpp ${CloseList_test} ${SingleAgentState_test})
 
-set(AStarNode_test ${AStarNode_file} unit_test/AStar/AStarNodeTester.h)
+set(AStarNode_test ${AStarNode_file} unit_test/naive_AStar/AStarNodeTester.h)
 add_executable(AStarNode main.cpp ${AStarNode_test})
 
 set(OpenList_test ${OpenList_file} unit_test/solver_base/OpenListTester.h)
 add_executable(OpenList main.cpp ${OpenList_test} ${AStarNode_file})
 
-set(AStar_test ${AStar_file} unit_test/AStar/AStarTester.h)
+set(AStar_test ${AStar_file} unit_test/naive_AStar/AStarTester.h)
 add_executable(AStar main.cpp ${AStar_test} ${MapReader_file})
