@@ -42,5 +42,3 @@ bool OpenList::empty() const {
 int OpenList::size() const {
     return open_priority_queue.size();
 }
-
-

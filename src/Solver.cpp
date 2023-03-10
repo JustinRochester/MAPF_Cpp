@@ -38,10 +38,12 @@ void Solver::clear_nodes() {
 
 bool Solver::expand_nodes(Node *node) {
     ++expanded_node_number;
+    return true;
 }
 
 bool Solver::generate_nodes(Node *node) {
     ++generated_node_number;
+    return true;
 }
 
 std::vector<std::pair<Vector, HEURISTIC_TYPE> > &Solver::get_allowed_operations() {

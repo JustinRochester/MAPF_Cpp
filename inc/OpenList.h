@@ -8,6 +8,7 @@
 #include <queue>
 #include <vector>
 #include "Node.h"
+#include <string>
 
 /**
  *
@@ -84,9 +85,55 @@ public:
 
     /**
      *
+     * @tparam T a subclass of Node.
+     * @param node the node with class T which will be pushed into this list.
+     *
+     * Safe mode of push.\n\n
+     * It will throw a exception if T isn't a subclass of Node.
+     */
+    template<class T>
+    void push_safe(const T *node) {
+        try {
+            push(new T(*node));
+        }
+        catch(const char *msg) {
+            std::string s = msg;
+            s += "\nIt isn't a sub-class of Node.";
+            throw s.c_str();
+        }
+    }
+
+    /**
+     *
      * @return the read-only pointer to the node with the highest priority.
+     *
+     * To avoid segment fault because of deleting this pointer.\n\n
+     * Please creating a new pointer node, like 'auto newnode = new XXXNode(*dynamic_cast<const XXXNode *>(top()))'
      */
     const Node* top() const;
+
+    /**
+     *
+     * @tparam T a subclass of Node.
+     * @return the read-only pointer to the node with a class as T.
+     *
+     * Safe mode of top.\n\n
+     * It will throw a exception if T isn't a subclass of Node, or empty.
+     */
+    template<class T>
+    const T * top_safe() const {
+        if(empty())
+            throw "the open list is empty";
+
+        try {
+            return new T(*dynamic_cast<const T *>(top()));
+        }
+        catch(const char *msg) {
+            std::string s = msg;
+            s += "\nIt isn't a sub-class of Node.";
+            throw s.c_str();
+        }
+    }
 
     /**
      *
