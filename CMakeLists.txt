@@ -48,7 +48,8 @@ set(Solver_file inc/solver_base/Solver.h src/solver_base/Solver.cpp ${common_fil
 set(AStarNode_file inc/naive_AStar/AStarNode.h src/naive_AStar/AStarNode.cpp ${common_file} ${MultiAgentState_file} ${Position_file} ${Node_file})
 set(AStar_file inc/naive_AStar/AStar.h src/naive_AStar/AStar.cpp ${Solver_file} ${HeuristicMap_file} ${AStarNode_file} ${OpenList_file} ${CloseList_file})
 
-set(IndependenceDetection_file inc/ID_AStar/IndependenceDetection.h src/ID_AStar/IndependenceDetection.cpp)
+set(LeftistTree_file inc/ID_AStar/LeftistTree.h src/ID_AStar/LeftistTree.cpp)
+set(ID_file inc/ID_AStar/ID.h src/ID_AStar/ID.cpp)
 
 
 
@@ -94,5 +95,8 @@ add_executable(OpenList main.cpp ${OpenList_test} ${AStarNode_file})
 set(AStar_test ${AStar_file} unit_test/naive_AStar/AStarTester.h)
 add_executable(AStar main.cpp ${AStar_test} ${MapReader_file})
 
-set(IndependenceDetection_test ${IndependenceDetection_file} unit_test/ID_AStar/IndependenceDetectionTester.h)
-add_executable(IndependenceDetection main.cpp ${IndependenceDetection_test} ${MapReader_file})
+set(LeftistTree_test ${LeftistTree_file} unit_test/ID_AStar/LeftistTreeTester.h)
+add_executable(LeftistTree main.cpp ${LeftistTree_test})
+
+set(ID_test ${ID_file} unit_test/ID_AStar/IDTester.h)
+add_executable(ID main.cpp ${ID_test} ${MapReader_file})

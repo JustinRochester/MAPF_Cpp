@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-#include "AgentPathTester.h"
+#include "LeftistTreeTester.h"
 
 int main() {
-    Tester *t = new AgentPathTester();
+    Tester *t = new LeftistTreeTester();
     t->test();
     return 0;
 }
