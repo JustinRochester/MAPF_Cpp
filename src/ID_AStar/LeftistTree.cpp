@@ -47,14 +47,6 @@ void LeftistTree::set_right_child(LeftistTree *rightChild) {
     right_child = rightChild;
 }
 
-int LeftistTree::get_distance() const {
-    return distance;
-}
-
-void LeftistTree::set_distance(int distance) {
-    LeftistTree::distance = distance;
-}
-
 LeftistTree *LeftistTree::get_root() {
     LeftistTree *root = this;
     while(root->parent != nullptr)
