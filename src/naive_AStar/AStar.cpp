@@ -125,10 +125,9 @@ bool AStar::generate_nodes(Node *node) {
     return true;
 }
 
-bool AStar::is_goal_node(const Node *node) const {
-    auto result_node = dynamic_cast<const AStarNode *>(node);
+bool AStar::is_goal_node(const AStarNode *node) const {
     for(int i=0; i<agents_number; ++i)
-        if(result_node->get_state()[i] != goal_positions[i])
+        if(node->get_state()[i] != goal_positions[i])
             return false;
     return true;
 }
