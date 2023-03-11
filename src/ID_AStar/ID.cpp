@@ -77,6 +77,9 @@ void ID::get_group_solution(const std::vector<int> &group_id) {
     low_solver->set_problem(group_start_positions, group_goal_positions);
     low_solver->solve();
 
+    expanded_node_number += low_solver->get_expanded_node_number();
+    generated_node_number += low_solver->get_generated_node_number();
+
     for(int i=0; i<group_size; ++i) {
         solution_path[group_id[i]] = low_solver->get_agent_path(i);
         solution += solution_path[group_id[i]].size();

@@ -196,6 +196,18 @@ public:
      * It should throw an exception if k is greater than the number of agens.
      */
     virtual AgentPath get_agent_path(int k) const = 0;
+
+    /**
+     *
+     * @return the number of expanded nodes.
+     */
+    int get_expanded_node_number() const;
+
+    /**
+     *
+     * @return the number of generated nodes.
+     */
+    int get_generated_node_number() const;
 };
 
 

@@ -78,3 +78,12 @@ void Solver::find_solutions(const Node *node) {
 const std::vector<const State *> &Solver::get_solution_path() const {
     return solution_path;
 }
+
+int Solver::get_expanded_node_number() const {
+    return expanded_node_number;
+}
+
+int Solver::get_generated_node_number() const {
+    return generated_node_number;
+}
+
