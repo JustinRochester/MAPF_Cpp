@@ -49,7 +49,7 @@ set(AStarNode_file inc/naive_AStar/AStarNode.h src/naive_AStar/AStarNode.cpp ${c
 set(AStar_file inc/naive_AStar/AStar.h src/naive_AStar/AStar.cpp ${Solver_file} ${HeuristicMap_file} ${AStarNode_file} ${OpenList_file} ${CloseList_file})
 
 set(LeftistTree_file inc/ID_AStar/LeftistTree.h src/ID_AStar/LeftistTree.cpp)
-set(ID_file inc/ID_AStar/ID.h src/ID_AStar/ID.cpp)
+set(ID_file inc/ID_AStar/ID.h src/ID_AStar/ID.cpp ${Solver_file} ${AgentPath_file} ${LeftistTree_file})
 
 
 
@@ -99,4 +99,4 @@ set(LeftistTree_test ${LeftistTree_file} unit_test/ID_AStar/LeftistTreeTester.h)
 add_executable(LeftistTree main.cpp ${LeftistTree_test})
 
 set(ID_test ${ID_file} unit_test/ID_AStar/IDTester.h)
-add_executable(ID main.cpp ${ID_test} ${MapReader_file})
+add_executable(ID main.cpp ${ID_test} ${MapReader_file} ${AStar_test})

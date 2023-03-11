@@ -11,6 +11,7 @@
 #include "Map.h"
 #include "Node.h"
 #include "State.h"
+#include "AgentPath.h"
 
 /**
  *
@@ -175,20 +176,26 @@ public:
 
     /**
      *
-     * @param node pointer of the node which will be checked whether it is a goal node.
-     * @return true means it is a goal node, vice versa.
-     */
-    virtual bool is_goal_node(const Node *node) const = 0;
-
-    /**
-     *
      * @param node goal node.
      *
      * Defines some follow-up operations after find out the solution.
      */
     virtual void find_solutions(const Node *node);
 
+    /**
+     *
+     * @return the solution path through the whole states.
+     */
     const std::vector<const State*>& get_solution_path() const;
+
+    /**
+     *
+     * @param k the agent id which will get its path
+     * @return the path for this agens.
+     *
+     * It should throw an exception if k is greater than the number of agens.
+     */
+    virtual AgentPath get_agent_path(int k) const = 0;
 };
 
 
