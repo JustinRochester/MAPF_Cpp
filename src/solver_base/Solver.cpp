@@ -10,6 +10,7 @@ Solver::Solver() {
     goal_positions.clear();
     agents_number = 0;
     solution = SOLUTION_NOT_FOUND;
+    conflict_window = -1;
     clear_nodes();
 }
 
@@ -18,7 +19,7 @@ Solver::Solver(const Solver &other) : agents_number(other.agents_number), start_
                                       expanded_node_number(other.expanded_node_number),
                                       generated_node_number(other.generated_node_number), maps(other.maps),
                                       allowed_operations(other.allowed_operations),
-                                      solution(other.solution) {
+                                      solution(other.solution), conflict_window(other.conflict_window) {
 }
 
 Solver::~Solver() {
@@ -85,5 +86,13 @@ int Solver::get_expanded_node_number() const {
 
 int Solver::get_generated_node_number() const {
     return generated_node_number;
+}
+
+int Solver::get_conflict_window() const {
+    return conflict_window;
+}
+
+void Solver::set_conflict_window(int conflictWindow) {
+    conflict_window = conflictWindow;
 }
 

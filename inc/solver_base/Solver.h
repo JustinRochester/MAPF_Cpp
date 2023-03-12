@@ -86,6 +86,13 @@ protected:
      */
      std::vector<const State *> solution_path;
 
+    /**
+     *
+     * It should planning the path so that there is no conflict before conflict window.\n\n
+     * It means infinity if its value is -1.
+     */
+    int conflict_window;
+
 public:
     /**
      *
@@ -208,6 +215,18 @@ public:
      * @return the number of generated nodes.
      */
     int get_generated_node_number() const;
+
+    /**
+     *
+     * @return length of the conflict window.
+     */
+    int get_conflict_window() const;
+
+    /**
+     *
+     * @param conflictWindow new conflict window length to update.
+     */
+    void set_conflict_window(int conflictWindow);
 };
 
 

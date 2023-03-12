@@ -22,10 +22,12 @@ void ID::merge_agents(int first_id, int second_id) {
     merge_set(groups[first_id], groups[second_id]);
 }
 
-std::pair<int, int> ID::check_paths() const {
+std::pair<int, int> ID::independence_detect() const {
     int max_time = 0;
     for (int i = 0; i < agents_number; ++i)
         max_time = std::max(max_time, solution_path[i].size());
+    if(conflict_window != -1)
+        max_time = std::min(max_time, conflict_window);
 
     for (int t = 0; t < max_time; ++t) {
         std::unordered_map<Position, std::pair<Position, int>, Position::PositionHasher> constraint_set;
@@ -56,7 +58,7 @@ void ID::solve() {
     for(int i=0; i<agents_number; ++i)
         if(groups[i]->is_root())
             get_group_solution(groups[i]->get_pre_order());
-    for(std::pair<int, int> conflict = check_paths(); conflict != std::make_pair(-1, -1); conflict = check_paths()) {
+    for(std::pair<int, int> conflict = independence_detect(); conflict != std::make_pair(-1, -1); conflict = independence_detect()) {
         merge_agents(conflict.first, conflict.second);
         get_group_solution(groups[conflict.first]->get_pre_order());
     }
@@ -72,6 +74,7 @@ void ID::get_group_solution(const std::vector<int> &group_id) {
         group_goal_positions[i] = goal_positions[group_id[i]];
     }
 
+    low_solver->set_conflict_window(conflict_window);
     low_solver->set_map(maps);
     low_solver->get_allowed_operations() = get_allowed_operations();
     low_solver->set_problem(group_start_positions, group_goal_positions);

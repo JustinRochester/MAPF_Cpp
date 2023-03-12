@@ -73,7 +73,7 @@ public:
      *
      * It will answer pair(-1, -1) if there is no conflict.
      */
-    std::pair<int, int> check_paths() const;
+    std::pair<int, int> independence_detect() const;
 
     /**
      *

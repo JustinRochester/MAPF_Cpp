@@ -27,7 +27,7 @@ public:
     void run() override {
         Solver *solver = new ID(new AStar());
         MapReader reader;
-        int agent_number = 5;
+        int agent_number = 8;
 //        reader.load_scenario("room-32-32-4", "random", 25, agent_number);
         reader.load_scenario("empty-8-8", "random", 6, agent_number);
 

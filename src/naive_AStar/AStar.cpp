@@ -73,7 +73,8 @@ void AStar::search_moves(AStarNode *node, int agent_id, const State *previous_st
         if(!maps.check_passable(next_position))
             continue;
 
-        constraint_set[next_position] = now_position;
+        if(conflict_window == -1 || node->get_state().get_time() <= conflict_window)
+            constraint_set[next_position] = now_position;
 
         HEURISTIC_TYPE next_g = now_g;
         int stop_time = -1;
@@ -95,7 +96,8 @@ void AStar::search_moves(AStarNode *node, int agent_id, const State *previous_st
         new_node->get_stop_time()[agent_id] = stop_time;
         search_moves(new_node, agent_id - 1, previous_state);
 
-        constraint_set.erase(next_position);
+        if(conflict_window == -1 || node->get_state().get_time() <= conflict_window)
+            constraint_set.erase(next_position);
         delete new_node;
     }
 }
