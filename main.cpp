@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-#include "IDTester.h"
+#include "CATTester.h"
 
 int main() {
-    Tester *t = new IDTester();
+    Tester *t = new CATTester();
     t->test();
     return 0;
 }
